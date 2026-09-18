@@ -1,0 +1,67 @@
+# EC2201 Digital Systems: AI Rule Engine using Boolean Logic
+## Demo Video Link & Walkthrough Presentation Script
+
+### 1. Video URL
+URL: [Insert Unlisted YouTube or Google Drive Link Here]
+(e.g., https://youtu.be/your_unlisted_video_id)
+
+---
+
+### 2. Video Overview
+- Target Length: 3–5 Minutes
+- Objective: Demonstrate the problem formulation, digital logic design, programmatic truth table, SymPy/K-map verification, live web simulator, and automated test suite.
+
+---
+
+### 3. Scene-by-Scene Recording Script
+
+#### Scene 1: Introduction & Problem Context (0:00 – 0:45)
+- **Visual:** Display Project Home page on the web app.
+- **Narrator:**
+  "Hello everyone! This is our project for EC2201 — Digital Systems: 'AI Rule Engine using Boolean Logic', focusing on a Smart Loan Eligibility & Risk Advisor.
+   In modern banking, credit qualification cannot rely on black-box heuristics; decisions must be deterministic, auditable, and rule-based.
+   We designed a two-layer hybrid system: Layer 1 is a pure combinational digital logic circuit that guarantees zero logic errors, and Layer 2 is an explainable AI confidence scoring layer that evaluates continuous risk factors."
+
+#### Scene 2: Boolean Variable Design & Digital Formulas (0:45 – 1:30)
+- **Visual:** Switch to 'Logic Model' tab.
+- **Narrator:**
+  "Our system abstracts applicant information into 5 Boolean variables:
+   A is income at least ₹40,000; B is credit score at least 700; C is age between 21 and 58; D indicates an active unpaid default; and E represents pledged collateral.
+   Our outputs are APPROVE, REJECT, and REVIEW.
+   APPROVE is A AND B AND C AND NOT D.
+   REJECT is D OR (NOT A AND NOT B) — meaning a default immediately overrides everything, or failing both income and credit leads to auto-rejection.
+   REVIEW is the NOR combination of both.
+   Notice our algebraic proof: APPROVE multiplied by REJECT is identically zero, guaranteeing mutual exclusivity."
+
+#### Scene 3: Truth Table & SymPy / K-Map Minimization (1:30 – 2:30)
+- **Visual:** Switch to 'Truth Table' tab, then to 'K-Map & Proof' tab.
+- **Narrator:**
+  "Here is our 32-state truth table generated programmatically with 2^5 combinations.
+   We used SymPy's Quine-McCluskey SOPform algorithm to compute the minimal Sum-of-Products.
+   Here is our formal verification banner: all 32 truth table combinations were programmatically checked against the minimal SOP with zero discrepancies!
+   Here is our 4-variable Karnaugh Map showing how minterms group for APPROVE and REJECT."
+
+#### Scene 4: Live Interactive Simulator Demonstration (2:30 – 3:45)
+- **Visual:** Switch to 'Live Simulator' tab.
+- **Narrator:**
+  "Now let's interact with our centerpiece — the Live Simulator.
+   Let's start with a normal qualified profile: ₹55,000 income, 750 credit score, age 29, no default, with collateral.
+   Immediately, the digital gates output APPROVE. Notice how the exact truth table coordinate (Row #29: 11101) is displayed.
+   Our Layer 2 AI score calculates 91.5% confidence in the Low Risk tier, providing a complete breakdown of the surplus income buffer and credit premium.
+   Now, watch what happens if this same applicant has an active loan default (toggle D = 1).
+   Instantly, the digital engine flips to REJECT — default overrides all positive signals!
+   Let's test an edge boundary: age 21 exactly. The age condition C stays 1 because our window comparator is inclusive."
+
+#### Scene 5: Automated Test Suite (15 Test Cases) & Fault Handling (3:45 – 4:30)
+- **Visual:** Switch to 'Test Suite (15)' tab. Click 'Run All 15 Test Cases Live'.
+- **Narrator:**
+  "To prove reliability, we built an automated test suite containing 15 cases: 10 normal operational states, 2 edge cases, 2 fault injections, and 1 boundary case.
+   When we click 'Run All 15 Test Cases', all 15 cases execute and pass with 100% success rate in under 0.1 seconds!
+   Notice Cases 13 and 14: when negative income or string inputs are supplied, the system doesn't crash — it gracefully rejects them with HTTP 400 validation errors."
+
+#### Scene 6: Conclusion (4:30 – 5:00)
+- **Visual:** Switch back to Home or Report tab.
+- **Narrator:**
+  "In conclusion, our AI Rule Engine successfully bridges digital logic design principles with modern explainable AI.
+   All project files, automated tests, truth table datasets, and documentation are available in the repository.
+   Thank you for your time!"

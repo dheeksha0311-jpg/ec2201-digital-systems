@@ -1,0 +1,2327 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>EC2201 — Digital Systems Design: Combinational Logic Synthesis & AI Rule Engine</title>
+  <link rel="stylesheet" href="/static/css/style.css?v=eee_fx1">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@400;600;700&family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+</head>
+<body>
+
+  <!-- Institutional Top Bar -->
+  <header class="app-header">
+    <div class="header-topbar">
+      <span>Department of Electronics & Communication Engineering • Digital Systems Design</span>
+      <span>Course Code: EC2201 • Laboratory Platform</span>
+    </div>
+
+    <div class="header-container">
+      <div class="brand-wrapper">
+        <div class="brand-icon-academic">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <rect x="4" y="4" width="16" height="16" rx="2"/>
+            <rect x="9" y="9" width="6" height="6"/>
+            <line x1="9" y1="1" x2="9" y2="4"/>
+            <line x1="15" y1="1" x2="15" y2="4"/>
+            <line x1="9" y1="20" x2="9" y2="23"/>
+            <line x1="15" y1="20" x2="15" y2="23"/>
+            <line x1="20" y1="9" x2="23" y2="9"/>
+            <line x1="20" y1="14" x2="23" y2="14"/>
+            <line x1="1" y1="9" x2="4" y2="9"/>
+            <line x1="1" y1="14" x2="4" y2="14"/>
+          </svg>
+        </div>
+        <div class="brand-text">
+          <h1>Combinational Logic Synthesis & AI Rule Engine</h1>
+          <div class="course-meta">EC2201 Course Project: Automated Credit Underwriting Architecture</div>
+        </div>
+      </div>
+
+      <nav class="app-nav">
+        <button class="nav-tab active" data-tab="home">Overview</button>
+        <button class="nav-tab" data-tab="learning">Learning Hub</button>
+        <button class="nav-tab" data-tab="practicing">Practice Lab</button>
+        <button class="nav-tab" data-tab="testing">Test Center</button>
+        <button class="nav-tab" data-tab="simulator">Logic Lab</button>
+        <button class="nav-tab" data-tab="model">Formulation</button>
+        <button class="nav-tab" data-tab="truth-table">Truth Table</button>
+        <button class="nav-tab" data-tab="simplification">K-Map Studio</button>
+        <button class="nav-tab" data-tab="test-cases">Verification</button>
+      </nav>
+
+      <div class="header-tools">
+        <button id="audio-synth-btn" class="audio-toggle-btn" onclick="toggleAudioSynth()" title="Toggle Web Audio Acoustic Feedback">
+          <span id="audio-icon">🔇</span>
+          <span id="audio-label">Sound FX: OFF</span>
+        </button>
+      </div>
+    </div>
+    <!-- PCB Bus Line with Traveling Electron Pulse -->
+    <div class="pcb-bus-line">
+      <div class="pcb-electron-pulse"></div>
+    </div>
+  </header>
+
+  <!-- Main Container -->
+  <main class="main-content">
+
+    <!-- 1. OVERVIEW & PEDAGOGICAL OBJECTIVES -->
+    <section id="tab-home" class="tab-pane active">
+      <div class="section-tag">Section 1.0 • Pedagogical Framework & Syllabus Mapping</div>
+      
+      <div class="card">
+        <div class="card-header">
+          <div>
+            <h2 class="card-title">Automated Loan Decision Engine & Digital Logic</h2>
+            <p class="card-subtitle">
+              Learn how real computer microchips make smart decisions using simple logic gates.
+            </p>
+          </div>
+          <div class="badge badge-success">Formally Verified (Zero Logic Errors)</div>
+        </div>
+
+        <!-- Plain English Analogy Box -->
+        <div class="plain-english-card">
+          <div class="plain-english-badge">💡 In Plain English — What is this website?</div>
+          <div class="plain-english-title">An AI Loan Officer Built with Computer Logic Gates</div>
+          <p class="plain-english-desc">
+            Imagine walking into a bank to apply for a loan. Instead of a human officer taking weeks to review your paperwork, 
+            a tiny silicon computer microchip checks <strong>5 simple yes/no questions</strong> (Income, Credit Score, Debt, Collateral, and Job History). 
+            Using basic logic gates like <strong>AND</strong> ("both must agree") and <strong>OR</strong> ("either one works"), 
+            the chip instantly decides whether to <strong>APPROVE</strong>, <strong>REJECT</strong>, or send the application for human <strong>REVIEW</strong>.
+          </p>
+        </div>
+
+        <!-- 3-Step Simple Flow -->
+        <div class="simple-steps-grid">
+          <div class="simple-step-box">
+            <div class="step-num-badge">1</div>
+            <h4 style="color:#fff; font-size:0.95rem; margin-bottom:0.35rem;">Check 5 Facts</h4>
+            <p style="color:var(--text-secondary); font-size:0.83rem; line-height:1.5; margin:0;">
+              Inputs A to E: Does the applicant make ₹40k+? High credit score? Low existing debt? Backed with collateral? Stable job?
+            </p>
+          </div>
+          <div class="simple-step-box">
+            <div class="step-num-badge">2</div>
+            <h4 style="color:#fff; font-size:0.95rem; margin-bottom:0.35rem;">Run Logic Gates</h4>
+            <p style="color:var(--text-secondary); font-size:0.83rem; line-height:1.5; margin:0;">
+              Hardware switching: High-speed silicon gates combine signals in less than 30 nanoseconds with 100% mathematical certainty.
+            </p>
+          </div>
+          <div class="simple-step-box">
+            <div class="step-num-badge">3</div>
+            <h4 style="color:#fff; font-size:0.95rem; margin-bottom:0.35rem;">Instant Verdict</h4>
+            <p style="color:var(--text-secondary); font-size:0.83rem; line-height:1.5; margin:0;">
+              Clear outcome: Green light for APPROVE, Red light for REJECT, Amber light for manual bank manager REVIEW.
+            </p>
+          </div>
+        </div>
+
+        <!-- 3D Interactive Silicon Microchip Stage -->
+        <div class="canvas-3d-wrapper">
+          <div class="canvas-3d-header">
+            <div class="canvas-3d-title">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="var(--accent-cyan)" stroke-width="2">
+                <rect x="4" y="4" width="16" height="16" rx="2"></rect>
+                <rect x="9" y="9" width="6" height="6"></rect>
+                <line x1="9" y1="1" x2="9" y2="4"></line>
+                <line x1="15" y1="1" x2="15" y2="4"></line>
+                <line x1="9" y1="20" x2="9" y2="23"></line>
+                <line x1="15" y1="20" x2="15" y2="23"></line>
+              </svg>
+              <span>3D Silicon Microchip Laboratory (DIP-14 Package)</span>
+            </div>
+            <span class="canvas-3d-hint">👆 Drag to spin • Click pins to probe</span>
+          </div>
+
+          <!-- Model Purpose Banner -->
+          <div class="canvas-3d-purpose-banner">
+            <span class="canvas-3d-purpose-tag">🎯 Model Purpose</span>
+            <span>
+              <strong>Bridges Theory to Physical Reality:</strong> In textbooks, logic gates look like 2D math drawings (A · B). 
+              This 3D model shows you what an actual physical gate looks like in real life—a standard <strong>74LS08 Quad 2-Input AND gate microchip</strong> 
+              with 14 silver pins carrying 5V and 0V electric currents on a circuit board to compute decisions in 30 nanoseconds.
+            </span>
+          </div>
+
+          <div id="chip-3d-canvas" class="canvas-3d-viewport"></div>
+
+          <!-- Interactive Controls Toolbar -->
+          <div class="canvas-3d-toolbar">
+            <div class="canvas-3d-btn-group">
+              <button type="button" class="canvas-3d-btn" id="chip-btn-xray" onclick="toggleChipXRayBtn()" title="See inside the chip">
+                <span>🔍</span> <span id="chip-xray-label">X-Ray: See Silicon Die</span>
+              </button>
+              <button type="button" class="canvas-3d-btn" onclick="triggerChipPulse()" title="Send electrical pulse through pins">
+                <span>⚡</span> <span>Pulse Signals</span>
+              </button>
+              <button type="button" class="canvas-3d-btn" id="chip-btn-spin" onclick="toggleChipSpinBtn()" title="Toggle auto rotation">
+                <span>🔄</span> <span id="chip-spin-label">Auto-Spin: ON</span>
+              </button>
+              <button type="button" class="canvas-3d-btn" onclick="window.EC2201_3D && window.EC2201_3D.resetChipView()" title="Reset angle">
+                <span>⟲</span> <span>Reset View</span>
+              </button>
+            </div>
+            <div id="chip-hud-text" class="canvas-3d-hud-text">
+              Hover over or click any metal pin to probe live voltage
+            </div>
+          </div>
+        </div>
+
+        <div class="grid-2" style="margin-top:1rem;">
+          <!-- Course Outcomes Simplified -->
+          <div style="background:#0b1222; padding:1.15rem; border-radius:var(--radius-sm); border:1px solid var(--border-subtle);">
+            <h4 style="color:#fff; font-size:0.9rem; margin-bottom:0.6rem; text-transform:uppercase; letter-spacing:0.04em;">What You Will Learn</h4>
+            <ul style="color:var(--text-secondary); font-size:0.85rem; line-height:1.7; padding-left:1.2rem; margin:0;">
+              <li><strong>Turning Rules into Math:</strong> Convert real-world bank guidelines into 5 simple True/False signals ($A, B, C, D, E$).</li>
+              <li><strong>All 32 Possibilities:</strong> Explore every combination of inputs in the exhaustive truth table.</li>
+              <li><strong>K-Map Simplification:</strong> Circle adjacent 1s to make circuits smaller, cheaper, and faster without math headaches.</li>
+              <li><strong>Zero-Error Guarantee:</strong> Prove that a loan can never be both Approved and Rejected at the same time.</li>
+            </ul>
+          </div>
+
+          <!-- Institutional Metadata Simplified -->
+          <div style="background:#0b1222; padding:1.15rem; border-radius:var(--radius-sm); border:1px solid var(--border-subtle);">
+            <h4 style="color:#fff; font-size:0.9rem; margin-bottom:0.6rem; text-transform:uppercase; letter-spacing:0.04em;">System Summary</h4>
+            <div style="font-size:0.85rem; color:var(--text-secondary); line-height:1.8;">
+              <div><strong>Course:</strong> EC2201 — Digital Systems Design</div>
+              <div><strong>Logic Circuit:</strong> 2-Input AND / OR / NOT Gates</div>
+              <div><strong>Possible Cases:</strong> 32 Combinations ($2^5 = 32$)</div>
+              <div><strong>Decisions:</strong> APPROVE, REJECT, or REVIEW</div>
+              <div><strong>Currency:</strong> Indian Rupee (₹ INR) financial thresholds</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Quick Metrics Grid -->
+      <div class="grid-4" style="margin-bottom:1.5rem;">
+        <div class="card" style="text-align:center; padding:1.25rem;">
+          <div style="font-size:1.8rem; font-weight:800; color:var(--accent-cyan); font-family:var(--font-mono);">5</div>
+          <div style="font-size:0.8rem; color:var(--text-secondary); font-weight:700; text-transform:uppercase;">Boolean Inputs</div>
+          <div style="font-size:0.75rem; color:var(--text-muted); margin-top:2px;">Variables A, B, C, D, E</div>
+        </div>
+        <div class="card" style="text-align:center; padding:1.25rem;">
+          <div style="font-size:1.8rem; font-weight:800; color:var(--accent-cobalt-light); font-family:var(--font-mono);">32</div>
+          <div style="font-size:0.8rem; color:var(--text-secondary); font-weight:700; text-transform:uppercase;">Truth Table States</div>
+          <div style="font-size:0.75rem; color:var(--text-muted); margin-top:2px;">2⁵ Exhaustive Vectors</div>
+        </div>
+        <div class="card" style="text-align:center; padding:1.25rem;">
+          <div style="font-size:1.8rem; font-weight:800; color:#34d399; font-family:var(--font-mono);">15 / 15</div>
+          <div style="font-size:0.8rem; color:var(--text-secondary); font-weight:700; text-transform:uppercase;">Test Vectors Passed</div>
+          <div style="font-size:0.75rem; color:var(--text-muted); margin-top:2px;">100% Verification Coverage</div>
+        </div>
+        <div class="card" style="text-align:center; padding:1.25rem;">
+          <div style="font-size:1.8rem; font-weight:800; color:#a78bfa; font-family:var(--font-mono);">0.00%</div>
+          <div style="font-size:0.8rem; color:var(--text-secondary); font-weight:700; text-transform:uppercase;">Logic Discrepancy</div>
+          <div style="font-size:0.75rem; color:var(--text-muted); margin-top:2px;">Zero Logic Errors Proven</div>
+        </div>
+      </div>
+
+      <!-- Architectural Separation Card -->
+      <div class="card">
+        <div class="card-header">
+          <h3 class="card-title">Two-Layer Hierarchical Architecture</h3>
+          <span class="badge badge-neutral">IEEE Architectural Pattern</span>
+        </div>
+
+        <div class="grid-2">
+          <div style="background:#0b1222; padding:1.25rem; border-radius:var(--radius-sm); border-left:3px solid #8b5cf6;">
+            <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:0.4rem;">
+              <h4 style="color:#c084fc; font-size:0.95rem; font-weight:700; text-transform:uppercase;">Layer 2: Stochastic / AI Risk Layer</h4>
+              <span class="badge" style="background:rgba(139, 92, 246, 0.15); color:#c084fc; border-color:rgba(139, 92, 246, 0.3);">Soft Signals</span>
+            </div>
+            <p style="font-size:0.85rem; color:var(--text-secondary); line-height:1.6;">
+              Operates downstream from Layer 1. Evaluates continuous financial metrics (exact income, surplus buffer, CIBIL margin) and collateral asset valuation without overriding binary gate decisions. Computes bounded confidence $S \in [0, 100]\%$ and Loan-to-Value (LTV) risk metrics.
+            </p>
+          </div>
+
+          <div style="background:#0b1222; padding:1.25rem; border-radius:var(--radius-sm); border-left:3px solid var(--accent-cyan);">
+            <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:0.4rem;">
+              <h4 style="color:var(--accent-cyan); font-size:0.95rem; font-weight:700; text-transform:uppercase;">Layer 1: Deterministic Combinational Core</h4>
+              <span class="badge" style="background:rgba(2, 132, 199, 0.15); color:var(--accent-cyan); border-color:rgba(2, 132, 199, 0.3);">Hard Digital Gates</span>
+            </div>
+            <p style="font-size:0.85rem; color:var(--text-secondary); line-height:1.6;">
+              Pure combinational hardware model synthesized over binary variables $A, B, C, D$. Implements canonical sum-of-products circuits with zero non-determinism. Guaranteed mutual exclusivity: $\text{APPROVE} \cdot \text{REJECT} \equiv 0$.
+            </p>
+          </div>
+        </div>
+
+        <div style="margin-top:1.25rem; text-align:right;">
+          <button class="btn" onclick="switchTab('simulator')">Enter Logic Laboratory &rarr;</button>
+        </div>
+      </div>
+    </section>
+
+    <!-- 2. LOGIC LABORATORY (SIMULATOR) -->
+    <section id="tab-simulator" class="tab-pane">
+      <div class="section-tag">Section 2.0 • Parametric Logic Laboratory</div>
+
+      <div class="card">
+        <div class="card-header">
+          <div>
+            <h3 class="card-title">Hardware Logic Emulator & Decision Simulator</h3>
+            <p class="card-subtitle">
+              Interactive test bench. Adjust applicant parameters to observe discrete gate assertions, mapped truth table coordinates, and downstream confidence metrics.
+            </p>
+          </div>
+          <span class="badge badge-neutral">Active Gate Engine</span>
+        </div>
+
+        <div id="sim-error-box" style="display:none; background:rgba(220, 38, 38, 0.12); border:1px solid rgba(220, 38, 38, 0.4); color:#fca5a5; padding:0.75rem 1rem; border-radius:var(--radius-xs); margin-bottom:1rem; font-size:0.85rem; font-family:var(--font-mono);"></div>
+
+        <!-- Automated Digital Clock Generator & Sequencer Toolbar -->
+        <div class="clock-generator-toolbar">
+          <div class="clock-gen-title">
+            <div class="clock-led" id="clock-pulse-led" title="Master System Clock Pulse"></div>
+            <div>
+              <span class="clock-gen-label">DIGITAL CLOCK GENERATOR &amp; MINTERM SEQUENCER</span>
+              <div class="clock-gen-sub">Automated Testbench Walkthrough: Cycle through all 16 minterms (m₀ &rarr; m₁₅)</div>
+            </div>
+          </div>
+          
+          <div class="clock-gen-controls">
+            <button type="button" class="clock-btn clock-btn-step" onclick="clockStepPrev()" title="Previous Minterm (Single Step)">
+              ⏮ Prev
+            </button>
+            <button type="button" id="clock-play-btn" class="clock-btn clock-btn-play" onclick="toggleClockGenerator()">
+              <span id="clock-play-icon">▶</span> <span id="clock-play-text">Auto Clock: START</span>
+            </button>
+            <button type="button" class="clock-btn clock-btn-step" onclick="clockStepNext()" title="Next Minterm (Single Step)">
+              Next ⏭
+            </button>
+            
+            <div class="clock-speed-group">
+              <span class="clock-speed-label">Freq:</span>
+              <button type="button" class="speed-btn active" data-freq="1200" onclick="setClockFrequency(1200)">1.0 Hz</button>
+              <button type="button" class="speed-btn" data-freq="600" onclick="setClockFrequency(600)">2.0 Hz</button>
+              <button type="button" class="speed-btn" data-freq="2400" onclick="setClockFrequency(2400)">0.5 Hz</button>
+            </div>
+            
+            <div class="clock-readout">
+              <span class="clock-readout-label">ACTIVE MINTERM:</span>
+              <span id="clock-step-display" class="clock-readout-val">m₁₄ (1110)</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="grid-2 equal-height">
+          <!-- Input Controls Form -->
+          <div style="background:#0b1222; padding:1.25rem; border-radius:var(--radius-sm); border:1px solid var(--border-subtle);">
+            <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:1rem; border-bottom:1px solid var(--border-subtle); padding-bottom:0.5rem;">
+              <h4 style="font-size:0.95rem; color:#fff; text-transform:uppercase; letter-spacing:0.03em; margin:0;">
+                Input Test Vectors (₹ INR Protocol)
+              </h4>
+              <span style="font-size:0.75rem; color:var(--accent-cyan); font-family:var(--font-mono);">RBI Standard AUS</span>
+            </div>
+
+            <!-- Income Control -->
+            <div class="form-group">
+              <div class="form-label">
+                <span>Monthly Inflow (I &ge; ₹40,000 for A=1)</span>
+                <span class="value-preview" id="sim-income-display">₹55,000</span>
+              </div>
+              <div class="input-row">
+                <input type="range" id="sim-income-slider" class="slider-input" min="10000" max="200000" step="2000" value="55000">
+                <div class="input-number-wrapper">
+                  <span class="currency-prefix">₹</span>
+                  <input type="number" id="sim-income-input" class="form-number-clean" value="55000" step="1000">
+                </div>
+              </div>
+              <div class="presets-row">
+                <span style="font-size:0.72rem; color:var(--text-muted); align-self:center;">Presets:</span>
+                <button type="button" class="preset-pill" onclick="setIncomePreset(30000)">₹30,000 (A=0)</button>
+                <button type="button" class="preset-pill" onclick="setIncomePreset(45000)">₹45,000 (A=1)</button>
+                <button type="button" class="preset-pill" onclick="setIncomePreset(85000)">₹85,000 (Mid)</button>
+                <button type="button" class="preset-pill" onclick="setIncomePreset(150000)">₹1,50,000 (High)</button>
+              </div>
+            </div>
+
+            <!-- Credit Score Control -->
+            <div class="form-group">
+              <div class="form-label">
+                <span>CIBIL Score (C<sub>s</sub> &ge; 700 for B=1)</span>
+                <span class="value-preview" id="sim-credit-display">750</span>
+              </div>
+              <div class="input-row">
+                <input type="range" id="sim-credit-slider" class="slider-input" min="300" max="900" step="5" value="750">
+                <div class="input-number-wrapper" style="width:110px;">
+                  <input type="number" id="sim-credit-input" class="form-number-clean" value="750" min="300" max="900">
+                </div>
+              </div>
+            </div>
+
+            <!-- Age Control -->
+            <div class="form-group">
+              <div class="form-label">
+                <span>Working Age Window (21 &le; Age &le; 58 for C=1)</span>
+                <span class="value-preview" id="sim-age-display">29 yrs</span>
+              </div>
+              <div class="input-row">
+                <input type="range" id="sim-age-slider" class="slider-input" min="18" max="75" step="1" value="29">
+                <div class="input-number-wrapper" style="width:110px;">
+                  <input type="number" id="sim-age-input" class="form-number-clean" value="29" min="18" max="75">
+                  <span style="font-size:0.75rem; color:var(--text-muted); margin-left:2px;">yrs</span>
+                </div>
+              </div>
+            </div>
+
+            <!-- Requested Loan Amount (₹) -->
+            <div class="form-group">
+              <div class="form-label">
+                <span>Requested Facility Principal (L)</span>
+                <span class="value-preview" id="sim-loan-display">₹5,00,000</span>
+              </div>
+              <div class="input-row">
+                <input type="range" id="sim-loan-slider" class="slider-input" min="100000" max="5000000" step="50000" value="500000">
+                <div class="input-number-wrapper">
+                  <span class="currency-prefix">₹</span>
+                  <input type="number" id="sim-loan-input" class="form-number-clean" value="500000" step="50000">
+                </div>
+              </div>
+            </div>
+
+            <!-- Default Toggle -->
+            <div class="form-group">
+              <label class="form-label">Active Default Invalidation Gate (Variable D)</label>
+              <div class="toggle-group">
+                <button type="button" class="toggle-btn active" data-field="default" data-value="false">No Default (D = 0)</button>
+                <button type="button" class="toggle-btn" data-field="default" data-value="true">Active Default (D = 1)</button>
+              </div>
+            </div>
+
+            <!-- Collateral Toggle & Valuation -->
+            <div class="form-group" style="margin-bottom:0.25rem;">
+              <label class="form-label">Asset Collateral Pledged (Variable E — Soft Metric)</label>
+              <div class="toggle-group" style="margin-bottom:0.65rem;">
+                <button type="button" class="toggle-btn" data-field="collateral" data-value="false">Unsecured (E = 0)</button>
+                <button type="button" class="toggle-btn active" data-field="collateral" data-value="true">Secured Asset (E = 1)</button>
+              </div>
+              
+              <div id="sim-collateral-val-container">
+                <div class="form-label">
+                  <span>Collateral Appraised Valuation (V<sub>c</sub>)</span>
+                  <span class="value-preview" id="sim-colval-display">₹8,00,000</span>
+                </div>
+                <div class="input-row">
+                  <input type="range" id="sim-colval-slider" class="slider-input" min="100000" max="10000000" step="100000" value="800000">
+                  <div class="input-number-wrapper">
+                    <span class="currency-prefix">₹</span>
+                    <input type="number" id="sim-colval-input" class="form-number-clean" value="800000" step="50000">
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Live Evaluation Results -->
+          <div id="sim-result-container" style="background:#0b1222; padding:1.25rem; border-radius:var(--radius-sm); border:1px solid var(--border-subtle);">
+            <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:0.85rem; border-bottom:1px solid var(--border-subtle); padding-bottom:0.5rem;">
+              <h4 style="font-size:0.95rem; color:#fff; text-transform:uppercase; letter-spacing:0.03em; margin:0;">
+                Loan Verdict &amp; Logic State
+              </h4>
+              <span id="sim-decision-badge" class="badge APPROVE" style="font-size:0.85rem; padding:0.35rem 0.85rem;">APPROVE</span>
+            </div>
+
+            <!-- 3D Holographic Decision Reactor -->
+            <div class="canvas-3d-wrapper" style="margin: 0.5rem 0 1rem 0;">
+              <div class="canvas-3d-header">
+                <div class="canvas-3d-title">
+                  <span style="display:inline-block; width:8px; height:8px; border-radius:50%; background:#00f59b; box-shadow:0 0 6px #00f59b;" id="decision-3d-dot"></span>
+                  <span>3D Decision Core Hologram</span>
+                </div>
+                <span class="canvas-3d-hint">👆 Drag to rotate • Click for shockwave</span>
+              </div>
+
+              <!-- Model Purpose Banner -->
+              <div class="canvas-3d-purpose-banner" style="font-size:0.78rem;">
+                <span class="canvas-3d-purpose-tag">🎯 Model Purpose</span>
+                <span>
+                  <strong>Instant Visual Feedback:</strong> Tells you the loan outcome at a glance without reading tables. 
+                  Green Crystalline Shield = <strong>APPROVE</strong>, Red Hazard Prism = <strong>REJECT</strong>, Amber Gyro = <strong>REVIEW</strong>.
+                </span>
+              </div>
+
+              <div id="decision-3d-canvas" class="canvas-3d-viewport" style="height:220px;"></div>
+
+              <!-- Interactive Controls Toolbar -->
+              <div class="canvas-3d-toolbar">
+                <div class="canvas-3d-btn-group">
+                  <button type="button" class="canvas-3d-btn" onclick="triggerReactorShockwaveBtn()" title="Trigger energy burst">
+                    <span>💥</span> <span>Shockwave</span>
+                  </button>
+                  <button type="button" class="canvas-3d-btn" id="reactor-btn-turbo" onclick="toggleReactorTurboBtn()" title="Accelerate orbit">
+                    <span>🚀</span> <span id="reactor-turbo-label">Turbo: OFF</span>
+                  </button>
+                  <button type="button" class="canvas-3d-btn" onclick="window.EC2201_3D && window.EC2201_3D.resetReactorView()" title="Reset angle">
+                    <span>⟲</span> <span>Reset</span>
+                  </button>
+                </div>
+                <div id="reactor-hud-text" class="canvas-3d-hud-text" style="font-size:0.7rem;">
+                  Click anywhere in 3D to burst
+                </div>
+              </div>
+            </div>
+
+            <!-- Simple Verdict Meaning Callout -->
+            <div class="plain-english-card" style="padding:0.75rem 1rem; margin-bottom:0.85rem;">
+              <div class="plain-english-badge" style="font-size:0.68rem; margin-bottom:0.25rem;">Simple Explanation</div>
+              <div id="sim-simple-verdict-text" style="font-size:0.84rem; color:#e2e8f0; line-height:1.5;">
+                <strong style="color:#00f59b;">APPROVED:</strong> Applicant has a high monthly income, healthy credit rating, and zero unpaid loan defaults.
+              </div>
+            </div>
+
+            <!-- Derived Boolean Variables -->
+            <div style="font-size:0.75rem; color:var(--text-muted); font-weight:700; text-transform:uppercase; letter-spacing:0.04em;">5 Simple Questions (Logic Inputs)</div>
+            <div class="bool-chips">
+              <div id="chip-A" class="bool-chip active" title="Income >= 40,000">A = 1 (Income ₹40k+)</div>
+              <div id="chip-B" class="bool-chip active" title="CIBIL >= 700">B = 1 (Credit 700+)</div>
+              <div id="chip-C" class="bool-chip active" title="Working Age 21-58">C = 1 (Age 21-58)</div>
+              <div id="chip-D" class="bool-chip" title="Default Flag">D = 0 (No Default)</div>
+              <div id="chip-E" class="bool-chip active" title="Collateral Backing">E = 1 (Collateral Pledged)</div>
+            </div>
+
+            <!-- Truth Table & K-Map State -->
+            <div style="background:#070b14; padding:0.65rem 0.85rem; border-radius:var(--radius-xs); margin-bottom:0.85rem; display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:0.5rem; border:1px solid var(--border-subtle);">
+              <div>
+                <div style="font-size:0.72rem; color:var(--text-muted); text-transform:uppercase; font-weight:700;">Coordinate Mapping</div>
+                <div id="sim-row-index" style="font-family:var(--font-mono); font-weight:700; color:var(--accent-cyan); font-size:0.85rem;">Row #29 (Minterm m₁₄: 1110)</div>
+              </div>
+              <div style="display:flex; gap:0.35rem; flex-wrap:wrap;">
+                <button class="btn btn-secondary" onclick="jumpToTruthTableRow()" style="font-size:0.75rem; padding:0.3rem 0.6rem;">
+                  Table Row
+                </button>
+                <button class="btn btn-secondary" onclick="jumpToKMapCell()" style="font-size:0.75rem; padding:0.3rem 0.6rem; border-color:var(--accent-cyan);">
+                  K-Map Subcube
+                </button>
+                <button class="btn btn-secondary" onclick="jumpToCircuitSchematic()" style="font-size:0.75rem; padding:0.3rem 0.6rem; border-color:#38bdf8;">
+                  Logic Circuit
+                </button>
+              </div>
+            </div>
+
+            <!-- Financial LTV Summary Badge -->
+            <div id="sim-financial-summary" style="display:flex; justify-content:space-between; align-items:center; background:#070b14; padding:0.55rem 0.75rem; border-radius:var(--radius-xs); margin-bottom:0.85rem; font-size:0.82rem; border:1px solid var(--border-subtle);">
+              <span style="color:var(--text-secondary);">Loan-to-Value (LTV): <strong id="sim-ltv-display" style="color:var(--accent-cyan); font-family:var(--font-mono);">62.5%</strong></span>
+              <span style="color:var(--text-secondary);">Facility Principal: <strong id="sim-loan-summary" style="color:#fff; font-family:var(--font-mono);">₹5,00,000</strong></span>
+            </div>
+
+            <!-- Logic Gate Execution Traces -->
+            <div style="margin-bottom:0.85rem;">
+              <div style="font-size:0.72rem; color:var(--text-muted); text-transform:uppercase; font-weight:700; margin-bottom:0.3rem;">Logic Gate Signal Traces</div>
+              <div style="font-size:0.78rem; font-family:var(--font-mono); color:#94a3b8; background:#070b14; padding:0.55rem; border-radius:var(--radius-xs); line-height:1.6; border:1px solid var(--border-subtle);">
+                <div>APPROVE: <span id="sim-trace-approve" style="color:#34d399;">A AND B AND C AND NOT D</span></div>
+                <div>REJECT:  <span id="sim-trace-reject" style="color:#f87171;">D OR (NOT A AND NOT B)</span></div>
+                <div>REVIEW:  <span id="sim-trace-review" style="color:#fbbf24;">NOT (APPROVE OR REJECT)</span></div>
+              </div>
+            </div>
+
+            <!-- Layer 2 AI Confidence Gauge -->
+            <div class="meter-container">
+              <div class="meter-header">
+                <span>Layer 2 AI Confidence Metric</span>
+                <div>
+                  <span id="sim-risk-tier" class="badge badge-success" style="font-size:0.72rem; margin-right:4px;">LOW RISK</span>
+                  <span id="sim-confidence-val" style="font-size:0.95rem; font-weight:800; color:#fff; font-family:var(--font-mono);">91.5%</span>
+                </div>
+              </div>
+              <div class="meter-bar-bg">
+                <div id="sim-confidence-meter" class="meter-bar-fill" style="width:91.5%; background-color:#059669;"></div>
+              </div>
+            </div>
+
+            <p id="sim-summary-text" style="font-size:0.82rem; color:var(--text-secondary); margin-bottom:0.75rem; border-left:2px solid var(--accent-cobalt-light); padding-left:0.5rem; line-height:1.5;">
+              Application fulfills primary digital gating constraints. Elevated confidence score reflects healthy debt-service margin and adequate asset backing.
+            </p>
+
+            <!-- Score Breakdown -->
+            <div style="font-size:0.72rem; color:var(--text-muted); text-transform:uppercase; font-weight:700; margin-bottom:0.3rem;">Stochastic Factor Weightings</div>
+            <div class="table-responsive" style="max-height:140px;">
+              <table class="data-table" style="font-size:0.78rem;">
+                <thead>
+                  <tr>
+                    <th>Factor</th>
+                    <th>Weight</th>
+                    <th>Description</th>
+                  </tr>
+                </thead>
+                <tbody id="sim-breakdown-tbody"></tbody>
+              </table>
+            </div>
+
+          </div>
+        </div>
+
+        <!-- Real-Time Logic Circuit Schematic & Timing Analyzer inside Logic Lab -->
+        <div class="card" style="margin-top:1.25rem; background:#080c16; border:1px solid var(--border-subtle); padding:1.25rem; margin-bottom:0;">
+          <div class="card-header" style="margin-bottom:0.75rem; flex-wrap:wrap; gap:0.5rem;">
+            <div>
+              <h4 style="font-size:1rem; font-weight:700; color:#fff; margin:0; display:flex; align-items:center; gap:0.5rem;">
+                <span class="badge badge-success" style="font-size:0.7rem; padding:0.2rem 0.5rem;">REAL-TIME HARDWARE TRACE</span>
+                <span>Gate-Level Signal Flow &amp; Multi-Channel Timing Analyzer</span>
+              </h4>
+              <p style="font-size:0.78rem; color:var(--text-secondary); margin:2px 0 0 0;">
+                Observe live electron flows through combinational gates and real-time digital waveforms on the multi-channel oscilloscope.
+              </p>
+            </div>
+            <div style="display:flex; gap:0.6rem; align-items:center; flex-wrap:wrap;">
+              <div class="trace-view-toggle">
+                <button type="button" class="trace-view-btn active" id="btn-view-circuit" onclick="switchTraceView('circuit')">Gate Circuit</button>
+                <button type="button" class="trace-view-btn" id="btn-view-scope" onclick="switchTraceView('scope')">Timing Analyzer</button>
+                <button type="button" class="trace-view-btn" id="btn-view-both" onclick="switchTraceView('both')">Split View</button>
+              </div>
+              <span style="font-size:0.75rem; color:var(--text-muted); font-family:var(--font-mono);">
+                <span style="display:inline-block; width:9px; height:9px; background:#38bdf8; border-radius:50%; margin-right:3px; vertical-align:middle; box-shadow:0 0 6px #38bdf8;"></span> High (1)
+                <span style="display:inline-block; width:9px; height:9px; background:#334155; border-radius:50%; margin-left:6px; margin-right:3px; vertical-align:middle;"></span> Low (0)
+              </span>
+            </div>
+          </div>
+
+          <!-- Circuit Schematic View -->
+          <div id="sim-circuit-schematic-view" class="circuit-container" style="position:relative; margin:0; padding:1.25rem 0.5rem;">
+            <svg id="sim-live-circuit-svg" width="800" height="280" viewBox="0 0 800 280" style="max-width:100%; height:auto; display:inline-block;">
+              <!-- Input Pins & Primary Bus lines -->
+              <g id="sim-circuit-inputs">
+                <!-- Line A -->
+                <text x="20" y="34" fill="#38bdf8" font-size="13" font-weight="bold" font-family="monospace">A</text>
+                <line id="sim-wire-a" class="circuit-wire" x1="40" y1="30" x2="260" y2="30" stroke="#334155" stroke-width="2"/>
+                <line id="sim-wire-a-tap" class="circuit-wire" x1="100" y1="30" x2="100" y2="190" stroke="#334155" stroke-width="1.5"/>
+                <line id="sim-wire-a-to-not" class="circuit-wire" x1="100" y1="190" x2="120" y2="190" stroke="#334155" stroke-width="1.5"/>
+                <circle cx="100" cy="30" r="3" fill="#38bdf8"/>
+
+                <!-- Line B -->
+                <text x="20" y="74" fill="#38bdf8" font-size="13" font-weight="bold" font-family="monospace">B</text>
+                <line id="sim-wire-b" class="circuit-wire" x1="40" y1="70" x2="260" y2="70" stroke="#334155" stroke-width="2"/>
+                <line id="sim-wire-b-tap" class="circuit-wire" x1="80" y1="70" x2="80" y2="225" stroke="#334155" stroke-width="1.5"/>
+                <line id="sim-wire-b-to-not" class="circuit-wire" x1="80" y1="225" x2="120" y2="225" stroke="#334155" stroke-width="1.5"/>
+                <circle cx="80" cy="70" r="3" fill="#38bdf8"/>
+
+                <!-- Line C -->
+                <text x="20" y="114" fill="#38bdf8" font-size="13" font-weight="bold" font-family="monospace">C</text>
+                <line id="sim-wire-c" class="circuit-wire" x1="40" y1="110" x2="260" y2="110" stroke="#334155" stroke-width="2"/>
+
+                <!-- Line D -->
+                <text x="20" y="154" fill="#38bdf8" font-size="13" font-weight="bold" font-family="monospace">D</text>
+                <line id="sim-wire-d" class="circuit-wire" x1="40" y1="150" x2="160" y2="150" stroke="#334155" stroke-width="2"/>
+                <line id="sim-wire-d-tap" class="circuit-wire" x1="60" y1="150" x2="60" y2="170" stroke="#334155" stroke-width="1.5"/>
+                <line id="sim-wire-d-to-or" class="circuit-wire" x1="60" y1="170" x2="350" y2="170" stroke="#334155" stroke-width="1.5"/>
+                <circle cx="60" cy="150" r="3" fill="#38bdf8"/>
+              </g>
+
+              <!-- Inverters -->
+              <!-- NOT D -->
+              <g class="circuit-gate" id="sim-gate-not-d" onclick="inspectCircuitNode('NOT_D')">
+                <polygon points="160,140 160,160 180,150" fill="#141f35" stroke="#38bdf8" stroke-width="1.5"/>
+                <circle cx="184" cy="150" r="3" fill="#070b14" stroke="#38bdf8" stroke-width="1.5"/>
+                <text x="162" y="135" fill="#94a3b8" font-size="9" font-family="monospace">INV D</text>
+              </g>
+              <line id="sim-wire-not-d-out" class="circuit-wire" x1="187" y1="150" x2="220" y2="150" stroke="#334155" stroke-width="1.5"/>
+              <line id="sim-wire-not-d-to-and1" class="circuit-wire" x1="220" y1="150" x2="220" y2="125" stroke="#334155" stroke-width="1.5"/>
+              <line id="sim-wire-not-d-in" class="circuit-wire" x1="220" y1="125" x2="260" y2="125" stroke="#334155" stroke-width="1.5"/>
+
+              <!-- NOT A -->
+              <g class="circuit-gate" id="sim-gate-not-a" onclick="inspectCircuitNode('NOT_A')">
+                <polygon points="120,180 120,200 140,190" fill="#141f35" stroke="#38bdf8" stroke-width="1.5"/>
+                <circle cx="144" cy="190" r="3" fill="#070b14" stroke="#38bdf8" stroke-width="1.5"/>
+                <text x="122" y="176" fill="#94a3b8" font-size="9" font-family="monospace">INV A</text>
+              </g>
+              <line id="sim-wire-not-a-out" class="circuit-wire" x1="147" y1="190" x2="230" y2="190" stroke="#334155" stroke-width="1.5"/>
+
+              <!-- NOT B -->
+              <g class="circuit-gate" id="sim-gate-not-b" onclick="inspectCircuitNode('NOT_B')">
+                <polygon points="120,215 120,235 140,225" fill="#141f35" stroke="#38bdf8" stroke-width="1.5"/>
+                <circle cx="144" cy="225" r="3" fill="#070b14" stroke="#38bdf8" stroke-width="1.5"/>
+                <text x="122" y="248" fill="#94a3b8" font-size="9" font-family="monospace">INV B</text>
+              </g>
+              <line id="sim-wire-not-b-out" class="circuit-wire" x1="147" y1="225" x2="230" y2="225" stroke="#334155" stroke-width="1.5"/>
+
+              <!-- 2-Input AND Gate 1A (T1 = A·B) -->
+              <line id="sim-wire-and1a-in-a" class="circuit-wire" x1="200" y1="30" x2="235" y2="35" stroke="#334155" stroke-width="1.5"/>
+              <line id="sim-wire-and1a-in-b" class="circuit-wire" x1="200" y1="70" x2="235" y2="55" stroke="#334155" stroke-width="1.5"/>
+              <g class="circuit-gate" id="sim-gate-and-ab" transform="translate(235, 25)" onclick="inspectCircuitNode('AND_AB')">
+                <path d="M 0,0 L 22,0 A 18,18 0 0,1 22,36 L 0,36 Z" fill="#141f35" stroke="#38bdf8" stroke-width="1.5"/>
+                <text x="6" y="22" fill="#38bdf8" font-size="8.5" font-weight="bold" font-family="monospace">AND</text>
+                <text x="4" y="-3" fill="#94a3b8" font-size="8" font-family="monospace">A·B</text>
+              </g>
+              <line id="sim-wire-and1a-out" class="circuit-wire" x1="275" y1="43" x2="305" y2="43" stroke="#334155" stroke-width="1.5"/>
+              <line id="sim-wire-and1a-to-out" class="circuit-wire" x1="305" y1="43" x2="305" y2="65" stroke="#334155" stroke-width="1.5"/>
+              <line id="sim-wire-and1a-in" class="circuit-wire" x1="305" y1="65" x2="335" y2="65" stroke="#334155" stroke-width="1.5"/>
+
+              <!-- 2-Input AND Gate 1B (T2 = C·D') -->
+              <line id="sim-wire-and1b-in-c" class="circuit-wire" x1="200" y1="110" x2="235" y2="105" stroke="#334155" stroke-width="1.5"/>
+              <line id="sim-wire-not-d-in" class="circuit-wire" x1="220" y1="125" x2="235" y2="125" stroke="#334155" stroke-width="1.5"/>
+              <g class="circuit-gate" id="sim-gate-and-cd" transform="translate(235, 95)" onclick="inspectCircuitNode('AND_CD')">
+                <path d="M 0,0 L 22,0 A 18,18 0 0,1 22,36 L 0,36 Z" fill="#141f35" stroke="#38bdf8" stroke-width="1.5"/>
+                <text x="6" y="22" fill="#38bdf8" font-size="8.5" font-weight="bold" font-family="monospace">AND</text>
+                <text x="3" y="-3" fill="#94a3b8" font-size="8" font-family="monospace">C·D'</text>
+              </g>
+              <line id="sim-wire-and1b-out" class="circuit-wire" x1="275" y1="113" x2="305" y2="113" stroke="#334155" stroke-width="1.5"/>
+              <line id="sim-wire-and1b-to-out" class="circuit-wire" x1="305" y1="113" x2="305" y2="85" stroke="#334155" stroke-width="1.5"/>
+              <line id="sim-wire-and1b-in" class="circuit-wire" x1="305" y1="85" x2="335" y2="85" stroke="#334155" stroke-width="1.5"/>
+
+              <!-- 2-Input AND Gate 1C (APPROVE = T1·T2) -->
+              <g class="circuit-gate" id="sim-gate-and-approve" transform="translate(335, 55)" onclick="inspectCircuitNode('AND_APPROVE')">
+                <path d="M 0,0 L 30,0 A 22,22 0 0,1 30,44 L 0,44 Z" fill="#141f35" stroke="#10b981" stroke-width="2"/>
+                <text x="8" y="27" fill="#10b981" font-size="9.5" font-weight="bold" font-family="monospace">AND</text>
+              </g>
+              <!-- Output from 2-Input AND Gate 1C (APPROVE) -->
+              <line id="sim-wire-approve-out" class="circuit-wire" x1="387" y1="77" x2="440" y2="77" stroke="#334155" stroke-width="2.5"/>
+              <circle id="sim-probe-approve" cx="440" cy="77" r="4.5" fill="#10b981"/>
+              <text x="450" y="81" fill="#10b981" font-size="12" font-weight="bold" font-family="monospace">APPROVE</text>
+              <text id="sim-val-approve-text" x="420" y="65" fill="#10b981" font-size="11" font-weight="bold" font-family="monospace">[1]</text>
+
+              <!-- AND Gate 2 (A'·B') -->
+              <line id="sim-wire-and2-in-a" class="circuit-wire" x1="230" y1="190" x2="260" y2="195" stroke="#334155" stroke-width="1.5"/>
+              <line id="sim-wire-and2-in-b" class="circuit-wire" x1="230" y1="225" x2="260" y2="215" stroke="#334155" stroke-width="1.5"/>
+              <g class="circuit-gate" id="sim-gate-and2" transform="translate(260, 185)" onclick="inspectCircuitNode('AND_NOT_A_B')">
+                <path d="M 0,0 L 25,0 A 20,20 0 0,1 25,40 L 0,40 Z" fill="#141f35" stroke="#38bdf8" stroke-width="1.5"/>
+                <text x="8" y="24" fill="#94a3b8" font-size="9" font-family="monospace">AND</text>
+              </g>
+              <line id="sim-wire-and2-out" class="circuit-wire" x1="305" y1="205" x2="350" y2="205" stroke="#334155" stroke-width="1.5"/>
+
+              <!-- OR Gate (REJECT = D + A'·B') -->
+              <g class="circuit-gate" id="sim-gate-or-reject" transform="translate(350, 158)" onclick="inspectCircuitNode('OR_REJECT')">
+                <path d="M 0,0 Q 15,30 0,60 Q 35,60 55,30 Q 35,0 0,0 Z" fill="#141f35" stroke="#ef4444" stroke-width="2"/>
+                <text x="14" y="35" fill="#ef4444" font-size="11" font-weight="bold" font-family="monospace">OR</text>
+              </g>
+              <!-- Output from OR Gate (REJECT) -->
+              <line id="sim-wire-reject-out" class="circuit-wire" x1="405" y1="188" x2="450" y2="188" stroke="#334155" stroke-width="2.5"/>
+              <circle id="sim-probe-reject" cx="450" cy="188" r="4.5" fill="#ef4444"/>
+              <text x="460" y="192" fill="#ef4444" font-size="12" font-weight="bold" font-family="monospace">REJECT</text>
+              <text id="sim-val-reject-text" x="480" y="178" fill="#ef4444" font-size="11" font-weight="bold" font-family="monospace">[0]</text>
+
+              <!-- Interconnects to NOR Gate (REVIEW) -->
+              <line id="sim-wire-app-to-nor" class="circuit-wire" x1="430" y1="75" x2="430" y2="120" stroke="#334155" stroke-width="1.5"/>
+              <line id="sim-wire-app-nor-in" class="circuit-wire" x1="430" y1="120" x2="590" y2="120" stroke="#334155" stroke-width="1.5"/>
+
+              <line id="sim-wire-rej-to-nor" class="circuit-wire" x1="450" y1="188" x2="450" y2="155" stroke="#334155" stroke-width="1.5"/>
+              <line id="sim-wire-rej-nor-in" class="circuit-wire" x1="450" y1="155" x2="590" y2="155" stroke="#334155" stroke-width="1.5"/>
+
+              <!-- NOR Gate (REVIEW = (APPROVE + REJECT)') -->
+              <g class="circuit-gate" id="sim-gate-nor-review" transform="translate(590, 110)" onclick="inspectCircuitNode('NOR_REVIEW')">
+                <path d="M 0,0 Q 20,30 0,60 Q 45,60 65,30 Q 45,0 0,0 Z" fill="#141f35" stroke="#fbbf24" stroke-width="2"/>
+                <circle cx="69" cy="30" r="4" fill="#070b14" stroke="#fbbf24" stroke-width="2"/>
+                <text x="16" y="35" fill="#fbbf24" font-size="10" font-weight="bold" font-family="monospace">NOR</text>
+              </g>
+              <line id="sim-wire-review-out" class="circuit-wire" x1="663" y1="140" x2="720" y2="140" stroke="#334155" stroke-width="2.5"/>
+              <circle id="sim-probe-review" cx="720" cy="140" r="4.5" fill="#fbbf24"/>
+              <text x="730" y="144" fill="#fbbf24" font-size="12" font-weight="bold" font-family="monospace">REVIEW</text>
+              <text id="sim-val-review-text" x="700" y="130" fill="#fbbf24" font-size="11" font-weight="bold" font-family="monospace">[0]</text>
+            </svg>
+
+            <!-- Interactive Probe Inspection Box -->
+            <div id="sim-circuit-node-inspector" style="margin-top:0.75rem; background:#0b1222; border:1px solid var(--border-subtle); border-radius:var(--radius-xs); padding:0.6rem 0.85rem; text-align:left; font-size:0.82rem; display:flex; justify-content:space-between; align-items:center;">
+              <div>
+                <span style="color:var(--text-muted); font-size:0.72rem; text-transform:uppercase; font-weight:700;">Gate Logic Inspector:</span>
+                <span id="sim-circuit-node-title" style="color:#fff; font-weight:700; margin-left:0.5rem; font-family:var(--font-mono);">Click any gate or probe on the schematic to inspect live boolean status</span>
+              </div>
+              <div id="sim-circuit-node-badge" class="badge badge-neutral" style="font-size:0.72rem;">Idle</div>
+            </div>
+          </div>
+
+          <!-- Digital Logic Timing Analyzer (Oscilloscope) View -->
+          <div id="sim-timing-analyzer-view" class="timing-scope-card" style="display:none; margin-top:0.75rem;">
+            <div class="scope-toolbar">
+              <div class="scope-title-group">
+                <span class="scope-screen-dot"></span>
+                <span class="scope-title">7-CHANNEL LOGIC TIMING ANALYZER (OSCILLOSCOPE)</span>
+                <span class="scope-status" id="scope-status-badge">SWEEPING: 60 FPS</span>
+              </div>
+              <div class="scope-controls">
+                <button type="button" class="scope-ctrl-btn" id="scope-pause-btn" onclick="toggleScopePause()">⏸ Freeze</button>
+                <button type="button" class="scope-ctrl-btn" onclick="clearScopeData()">⟲ Clear</button>
+                <div class="scope-speed-pills">
+                  <span style="font-size:0.72rem; color:var(--text-muted);">Speed:</span>
+                  <button type="button" class="scope-speed-btn" data-speed="0.5" onclick="setScopeSpeed(0.5)">0.5x</button>
+                  <button type="button" class="scope-speed-btn active" data-speed="1" onclick="setScopeSpeed(1)">1.0x</button>
+                  <button type="button" class="scope-speed-btn" data-speed="2" onclick="setScopeSpeed(2)">2.0x</button>
+                </div>
+              </div>
+            </div>
+
+            <!-- Oscilloscope Screen with Phosphor Scanlines -->
+            <div class="scope-screen-wrapper">
+              <canvas id="timing-analyzer-canvas" width="800" height="230"></canvas>
+              <div class="scope-crt-scanlines"></div>
+            </div>
+
+            <!-- Channel Legend -->
+            <div class="scope-legend-row">
+              <span class="scope-chan-tag chan-a"><span class="chan-box" style="background:#38bdf8;"></span> CH1: A</span>
+              <span class="scope-chan-tag chan-b"><span class="chan-box" style="background:#38bdf8;"></span> CH2: B</span>
+              <span class="scope-chan-tag chan-c"><span class="chan-box" style="background:#38bdf8;"></span> CH3: C</span>
+              <span class="scope-chan-tag chan-d"><span class="chan-box" style="background:#38bdf8;"></span> CH4: D</span>
+              <span class="scope-chan-tag chan-app"><span class="chan-box" style="background:#10b981;"></span> OUT: APPROVE</span>
+              <span class="scope-chan-tag chan-rej"><span class="chan-box" style="background:#ef4444;"></span> OUT: REJECT</span>
+              <span class="scope-chan-tag chan-rev"><span class="chan-box" style="background:#fbbf24;"></span> OUT: REVIEW</span>
+            </div>
+          </div>
+
+          <!-- Floating Digital Multimeter HUD -->
+          <div id="multimeter-hud" class="multimeter-hud" style="display:none;">
+            <div class="multimeter-hud-header">
+              <span class="multimeter-hud-title" id="mm-title">PROBE: NODE A</span>
+              <button type="button" class="multimeter-hud-close" onclick="closeMultimeterHUD()">&times;</button>
+            </div>
+            <div class="multimeter-hud-body">
+              <div class="multimeter-dial">
+                <div class="multimeter-volts" id="mm-volts">5.00 V</div>
+                <div class="multimeter-logic" id="mm-logic">LOGIC HIGH [1]</div>
+              </div>
+              <div class="multimeter-specs">
+                <div class="mm-spec-row"><span>Equation:</span> <strong id="mm-equation">A</strong></div>
+                <div class="mm-spec-row"><span>Delay (t_pd):</span> <strong id="mm-delay">3.8 ns</strong></div>
+                <div class="mm-spec-row"><span>Fan-out:</span> <strong id="mm-fanout">2 Gates</strong></div>
+              </div>
+            </div>
+            <div class="multimeter-hud-wave">
+              <canvas id="multimeter-wave-canvas" width="220" height="34"></canvas>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 3. COMBINATIONAL LOGIC FORMULATION & SCHEMATIC -->
+    <section id="tab-model" class="tab-pane">
+      <div class="section-tag">Section 3.0 • Boolean Switching Theory & Circuit Architecture</div>
+
+      <div class="card">
+        <div class="card-header">
+          <div>
+            <h3 class="card-title">Mathematical Formulation & Logic Circuit Schematic</h3>
+            <p class="card-subtitle">
+              Formal definition of switching functions, gate-level schematic, and mathematical proof of mutual exclusivity.
+            </p>
+          </div>
+          <span class="badge badge-neutral">Switching Theory</span>
+        </div>
+
+        <!-- Plain English Analogy Box -->
+        <div class="plain-english-card">
+          <div class="plain-english-badge">💡 In Plain English — The 5 Rules of Loan Approval</div>
+          <div class="plain-english-title">How the Computer Thinks About Your Loan</div>
+          <p class="plain-english-desc" style="margin-bottom:0.6rem;">
+            Before any computer chip makes a decision, it translates complex paperwork into 5 simple True or False facts:
+          </p>
+          <div class="grid-3" style="gap:0.75rem;">
+            <div style="background:#070b14; padding:0.6rem; border-radius:var(--radius-xs); border:1px solid rgba(56,189,248,0.2);">
+              <strong style="color:var(--accent-cyan);">A (Income):</strong> Earns &ge; ₹40,000/mo.
+            </div>
+            <div style="background:#070b14; padding:0.6rem; border-radius:var(--radius-xs); border:1px solid rgba(56,189,248,0.2);">
+              <strong style="color:var(--accent-cyan);">B (Credit):</strong> CIBIL score &ge; 700.
+            </div>
+            <div style="background:#070b14; padding:0.6rem; border-radius:var(--radius-xs); border:1px solid rgba(56,189,248,0.2);">
+              <strong style="color:var(--accent-cyan);">C (Age):</strong> Working age 21 to 58.
+            </div>
+            <div style="background:#070b14; padding:0.6rem; border-radius:var(--radius-xs); border:1px solid rgba(239,68,68,0.3);">
+              <strong style="color:#ef4444;">D (Default):</strong> Any unpaid default? (Red flag!)
+            </div>
+            <div style="background:#070b14; padding:0.6rem; border-radius:var(--radius-xs); border:1px solid rgba(16,185,129,0.3);">
+              <strong style="color:#10b981;">E (Collateral):</strong> Pledged gold or house?
+            </div>
+          </div>
+        </div>
+
+        <h4 style="font-size:0.95rem; color:#fff; text-transform:uppercase; letter-spacing:0.04em; margin:1rem 0 0.5rem;">
+          1. Discrete Variable Gating Thresholds
+        </h4>
+        <div class="table-responsive">
+          <table class="data-table">
+            <thead>
+              <tr>
+                <th>Literal</th>
+                <th>Underwriting Parameter</th>
+                <th>Assertion Threshold (Logic 1)</th>
+                <th>Negation Condition (Logic 0)</th>
+                <th>Circuit Implementation</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td><strong>A</strong></td>
+                <td>Monthly Inflow Buffer</td>
+                <td>$\text{Income} \ge \text{₹40,000}$</td>
+                <td>$\text{Income} < \text{₹40,000}$</td>
+                <td>Magnitude Comparator</td>
+              </tr>
+              <tr>
+                <td><strong>B</strong></td>
+                <td>Creditworthiness Index</td>
+                <td>$\text{CIBIL Score} \ge 700$</td>
+                <td>$\text{CIBIL Score} < 700$</td>
+                <td>Magnitude Comparator</td>
+              </tr>
+              <tr>
+                <td><strong>C</strong></td>
+                <td>Working Age Cohort</td>
+                <td>$21 \le \text{Age} \le 58$</td>
+                <td>$\text{Age} < 21 \text{ or } \text{Age} > 58$</td>
+                <td>Dual-Threshold Window Comparator</td>
+              </tr>
+              <tr>
+                <td><strong>D</strong></td>
+                <td>Delinquency History</td>
+                <td>Active Unpaid Default = 1</td>
+                <td>Clean Track Record = 0</td>
+                <td>Inhibitor Switch</td>
+              </tr>
+              <tr>
+                <td><strong>E</strong></td>
+                <td>Pledged Asset Security</td>
+                <td>Collateral Asset Pledged = 1</td>
+                <td>Unsecured Request = 0</td>
+                <td>Layer 2 Soft Weighting Signal</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+
+        <!-- Logic Gate Schematic SVG -->
+        <div style="display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:0.5rem; margin:1.5rem 0 0.5rem;">
+          <h4 style="font-size:0.95rem; color:#fff; text-transform:uppercase; letter-spacing:0.04em; margin:0;">
+            2. Interactive Gate-Level Combinational Logic Schematic
+          </h4>
+          <div style="display:flex; gap:0.5rem; align-items:center;">
+            <span style="font-size:0.75rem; color:var(--text-muted); font-family:var(--font-mono);">
+              <span style="display:inline-block; width:9px; height:9px; background:#38bdf8; border-radius:50%; margin-right:3px; vertical-align:middle; box-shadow:0 0 5px #38bdf8;"></span> High (1)
+              <span style="display:inline-block; width:9px; height:9px; background:#334155; border-radius:50%; margin-left:6px; margin-right:3px; vertical-align:middle;"></span> Low (0)
+            </span>
+            <span class="badge badge-neutral" style="font-size:0.72rem;">Live Synchronized</span>
+          </div>
+        </div>
+
+        <div class="circuit-container" style="position:relative;">
+          <svg id="live-circuit-svg" width="800" height="280" viewBox="0 0 800 280" style="max-width:100%; height:auto; display:inline-block;">
+            <!-- Input Pins & Primary Bus lines -->
+            <g id="circuit-inputs">
+              <!-- Line A -->
+              <text x="20" y="34" fill="#38bdf8" font-size="13" font-weight="bold" font-family="monospace">A</text>
+              <line id="wire-a" class="circuit-wire" x1="40" y1="30" x2="260" y2="30" stroke="#334155" stroke-width="2"/>
+              <!-- Tap from A to NOT A -->
+              <line id="wire-a-tap" class="circuit-wire" x1="100" y1="30" x2="100" y2="190" stroke="#334155" stroke-width="1.5"/>
+              <line id="wire-a-to-not" class="circuit-wire" x1="100" y1="190" x2="120" y2="190" stroke="#334155" stroke-width="1.5"/>
+              <circle cx="100" cy="30" r="3" fill="#38bdf8"/>
+
+              <!-- Line B -->
+              <text x="20" y="74" fill="#38bdf8" font-size="13" font-weight="bold" font-family="monospace">B</text>
+              <line id="wire-b" class="circuit-wire" x1="40" y1="70" x2="260" y2="70" stroke="#334155" stroke-width="2"/>
+              <!-- Tap from B to NOT B -->
+              <line id="wire-b-tap" class="circuit-wire" x1="80" y1="70" x2="80" y2="225" stroke="#334155" stroke-width="1.5"/>
+              <line id="wire-b-to-not" class="circuit-wire" x1="80" y1="225" x2="120" y2="225" stroke="#334155" stroke-width="1.5"/>
+              <circle cx="80" cy="70" r="3" fill="#38bdf8"/>
+
+              <!-- Line C -->
+              <text x="20" y="114" fill="#38bdf8" font-size="13" font-weight="bold" font-family="monospace">C</text>
+              <line id="wire-c" class="circuit-wire" x1="40" y1="110" x2="260" y2="110" stroke="#334155" stroke-width="2"/>
+
+              <!-- Line D -->
+              <text x="20" y="154" fill="#38bdf8" font-size="13" font-weight="bold" font-family="monospace">D</text>
+              <line id="wire-d" class="circuit-wire" x1="40" y1="150" x2="160" y2="150" stroke="#334155" stroke-width="2"/>
+              <!-- Tap from D directly to OR gate -->
+              <line id="wire-d-tap" class="circuit-wire" x1="60" y1="150" x2="60" y2="170" stroke="#334155" stroke-width="1.5"/>
+              <line id="wire-d-to-or" class="circuit-wire" x1="60" y1="170" x2="350" y2="170" stroke="#334155" stroke-width="1.5"/>
+              <circle cx="60" cy="150" r="3" fill="#38bdf8"/>
+            </g>
+
+            <!-- Inverters -->
+            <!-- NOT D -->
+            <g class="circuit-gate" id="gate-not-d" onclick="inspectCircuitNode('NOT_D')">
+              <polygon points="160,140 160,160 180,150" fill="#141f35" stroke="#38bdf8" stroke-width="1.5"/>
+              <circle cx="184" cy="150" r="3" fill="#070b14" stroke="#38bdf8" stroke-width="1.5"/>
+              <text x="162" y="135" fill="#94a3b8" font-size="9" font-family="monospace">INV D</text>
+            </g>
+            <line id="wire-not-d-out" class="circuit-wire" x1="187" y1="150" x2="220" y2="150" stroke="#334155" stroke-width="1.5"/>
+            <line id="wire-not-d-to-and1" class="circuit-wire" x1="220" y1="150" x2="220" y2="125" stroke="#334155" stroke-width="1.5"/>
+            <line id="wire-not-d-in" class="circuit-wire" x1="220" y1="125" x2="260" y2="125" stroke="#334155" stroke-width="1.5"/>
+
+            <!-- NOT A -->
+            <g class="circuit-gate" id="gate-not-a" onclick="inspectCircuitNode('NOT_A')">
+              <polygon points="120,180 120,200 140,190" fill="#141f35" stroke="#38bdf8" stroke-width="1.5"/>
+              <circle cx="144" cy="190" r="3" fill="#070b14" stroke="#38bdf8" stroke-width="1.5"/>
+              <text x="122" y="176" fill="#94a3b8" font-size="9" font-family="monospace">INV A</text>
+            </g>
+            <line id="wire-not-a-out" class="circuit-wire" x1="147" y1="190" x2="230" y2="190" stroke="#334155" stroke-width="1.5"/>
+
+            <!-- NOT B -->
+            <g class="circuit-gate" id="gate-not-b" onclick="inspectCircuitNode('NOT_B')">
+              <polygon points="120,215 120,235 140,225" fill="#141f35" stroke="#38bdf8" stroke-width="1.5"/>
+              <circle cx="144" cy="225" r="3" fill="#070b14" stroke="#38bdf8" stroke-width="1.5"/>
+              <text x="122" y="248" fill="#94a3b8" font-size="9" font-family="monospace">INV B</text>
+            </g>
+            <line id="wire-not-b-out" class="circuit-wire" x1="147" y1="225" x2="230" y2="225" stroke="#334155" stroke-width="1.5"/>
+
+            <!-- 2-Input AND Gate 1A (T1 = A·B) -->
+            <line id="wire-and1a-in-a" class="circuit-wire" x1="200" y1="30" x2="235" y2="35" stroke="#334155" stroke-width="1.5"/>
+            <line id="wire-and1a-in-b" class="circuit-wire" x1="200" y1="70" x2="235" y2="55" stroke="#334155" stroke-width="1.5"/>
+            <g class="circuit-gate" id="gate-and-ab" transform="translate(235, 25)" onclick="inspectCircuitNode('AND_AB')">
+              <path d="M 0,0 L 22,0 A 18,18 0 0,1 22,36 L 0,36 Z" fill="#141f35" stroke="#38bdf8" stroke-width="1.5"/>
+              <text x="6" y="22" fill="#38bdf8" font-size="8.5" font-weight="bold" font-family="monospace">AND</text>
+              <text x="4" y="-3" fill="#94a3b8" font-size="8" font-family="monospace">A·B</text>
+            </g>
+            <line id="wire-and1a-out" class="circuit-wire" x1="275" y1="43" x2="305" y2="43" stroke="#334155" stroke-width="1.5"/>
+            <line id="wire-and1a-to-out" class="circuit-wire" x1="305" y1="43" x2="305" y2="65" stroke="#334155" stroke-width="1.5"/>
+            <line id="wire-and1a-in" class="circuit-wire" x1="305" y1="65" x2="335" y2="65" stroke="#334155" stroke-width="1.5"/>
+
+            <!-- 2-Input AND Gate 1B (T2 = C·D') -->
+            <line id="wire-and1b-in-c" class="circuit-wire" x1="200" y1="110" x2="235" y2="105" stroke="#334155" stroke-width="1.5"/>
+            <line id="wire-not-d-in" class="circuit-wire" x1="220" y1="125" x2="235" y2="125" stroke="#334155" stroke-width="1.5"/>
+            <g class="circuit-gate" id="gate-and-cd" transform="translate(235, 95)" onclick="inspectCircuitNode('AND_CD')">
+              <path d="M 0,0 L 22,0 A 18,18 0 0,1 22,36 L 0,36 Z" fill="#141f35" stroke="#38bdf8" stroke-width="1.5"/>
+              <text x="6" y="22" fill="#38bdf8" font-size="8.5" font-weight="bold" font-family="monospace">AND</text>
+              <text x="3" y="-3" fill="#94a3b8" font-size="8" font-family="monospace">C·D'</text>
+            </g>
+            <line id="wire-and1b-out" class="circuit-wire" x1="275" y1="113" x2="305" y2="113" stroke="#334155" stroke-width="1.5"/>
+            <line id="wire-and1b-to-out" class="circuit-wire" x1="305" y1="113" x2="305" y2="85" stroke="#334155" stroke-width="1.5"/>
+            <line id="wire-and1b-in" class="circuit-wire" x1="305" y1="85" x2="335" y2="85" stroke="#334155" stroke-width="1.5"/>
+
+            <!-- 2-Input AND Gate 1C (APPROVE = T1·T2) -->
+            <g class="circuit-gate" id="gate-and-approve" transform="translate(335, 55)" onclick="inspectCircuitNode('AND_APPROVE')">
+              <path d="M 0,0 L 30,0 A 22,22 0 0,1 30,44 L 0,44 Z" fill="#141f35" stroke="#10b981" stroke-width="2"/>
+              <text x="8" y="27" fill="#10b981" font-size="9.5" font-weight="bold" font-family="monospace">AND</text>
+            </g>
+            <!-- Output from 2-Input AND Gate 1C (APPROVE) -->
+            <line id="wire-approve-out" class="circuit-wire" x1="387" y1="77" x2="440" y2="77" stroke="#334155" stroke-width="2.5"/>
+            <circle id="probe-approve" cx="440" cy="77" r="4.5" fill="#10b981"/>
+            <text x="450" y="81" fill="#10b981" font-size="12" font-weight="bold" font-family="monospace">APPROVE</text>
+            <text id="val-approve-text" x="420" y="65" fill="#10b981" font-size="11" font-weight="bold" font-family="monospace">[0]</text>
+
+            <!-- AND Gate 2 (A'·B') -->
+            <g class="circuit-gate" id="gate-and2" transform="translate(230, 180)" onclick="inspectCircuitNode('AND_NOT_A_B')">
+              <path d="M 0,0 L 30,0 A 28,28 0 0,1 30,55 L 0,55 Z" fill="#141f35" stroke="#f59e0b" stroke-width="1.5"/>
+              <text x="8" y="32" fill="#f59e0b" font-size="10" font-family="monospace">AND</text>
+            </g>
+            <!-- Wire from AND2 to OR Gate -->
+            <line id="wire-and2-out" class="circuit-wire" x1="288" y1="207" x2="350" y2="207" stroke="#334155" stroke-width="1.5"/>
+
+            <!-- OR Gate (REJECT = D + A'·B') -->
+            <g class="circuit-gate" id="gate-or-reject" transform="translate(350, 155)" onclick="inspectCircuitNode('OR_REJECT')">
+              <path d="M 0,0 Q 20,33 0,65 Q 45,65 65,33 Q 45,0 0,0 Z" fill="#141f35" stroke="#ef4444" stroke-width="2"/>
+              <text x="18" y="38" fill="#ef4444" font-size="11" font-weight="bold" font-family="monospace">OR</text>
+            </g>
+            <!-- Output from OR Gate (REJECT) -->
+            <line id="wire-reject-out" class="circuit-wire" x1="415" y1="188" x2="500" y2="188" stroke="#334155" stroke-width="2.5"/>
+            <circle id="probe-reject" cx="500" cy="188" r="4.5" fill="#ef4444"/>
+            <text x="510" y="192" fill="#ef4444" font-size="12" font-weight="bold" font-family="monospace">REJECT = D + A'·B'</text>
+            <text id="val-reject-text" x="480" y="178" fill="#ef4444" font-size="11" font-weight="bold" font-family="monospace">[1]</text>
+
+            <!-- Interconnects to NOR Gate (REVIEW) -->
+            <line id="wire-app-to-nor" class="circuit-wire" x1="430" y1="75" x2="430" y2="120" stroke="#334155" stroke-width="1.5"/>
+            <line id="wire-app-nor-in" class="circuit-wire" x1="430" y1="120" x2="590" y2="120" stroke="#334155" stroke-width="1.5"/>
+            <circle cx="430" cy="75" r="3" fill="#10b981"/>
+
+            <line id="wire-rej-to-nor" class="circuit-wire" x1="450" y1="188" x2="450" y2="155" stroke="#334155" stroke-width="1.5"/>
+            <line id="wire-rej-nor-in" class="circuit-wire" x1="450" y1="155" x2="590" y2="155" stroke="#334155" stroke-width="1.5"/>
+            <circle cx="450" cy="188" r="3" fill="#ef4444"/>
+
+            <!-- NOR Gate (REVIEW = (APPROVE + REJECT)') -->
+            <g class="circuit-gate" id="gate-nor-review" transform="translate(590, 110)" onclick="inspectCircuitNode('NOR_REVIEW')">
+              <path d="M 0,0 Q 20,30 0,60 Q 45,60 65,30 Q 45,0 0,0 Z" fill="#141f35" stroke="#fbbf24" stroke-width="2"/>
+              <circle cx="69" cy="30" r="4" fill="#070b14" stroke="#fbbf24" stroke-width="2"/>
+              <text x="16" y="35" fill="#fbbf24" font-size="10" font-weight="bold" font-family="monospace">NOR</text>
+            </g>
+            <!-- Output from NOR Gate (REVIEW) -->
+            <line id="wire-review-out" class="circuit-wire" x1="663" y1="140" x2="720" y2="140" stroke="#334155" stroke-width="2.5"/>
+            <circle id="probe-review" cx="720" cy="140" r="4.5" fill="#fbbf24"/>
+            <text x="730" y="144" fill="#fbbf24" font-size="12" font-weight="bold" font-family="monospace">REVIEW</text>
+            <text id="val-review-text" x="700" y="130" fill="#fbbf24" font-size="11" font-weight="bold" font-family="monospace">[0]</text>
+          </svg>
+
+          <!-- Interactive Probe Inspection Box -->
+          <div id="circuit-node-inspector" style="margin-top:0.75rem; background:#0b1222; border:1px solid var(--border-subtle); border-radius:var(--radius-xs); padding:0.6rem 0.85rem; text-align:left; font-size:0.82rem; display:flex; justify-content:space-between; align-items:center;">
+            <div>
+              <span style="color:var(--text-muted); font-size:0.72rem; text-transform:uppercase; font-weight:700;">Gate Logic Inspector:</span>
+              <span id="circuit-node-title" style="color:#fff; font-weight:700; margin-left:0.5rem; font-family:var(--font-mono);">Click any gate or probe on the schematic to inspect live boolean status</span>
+            </div>
+            <div id="circuit-node-badge" class="badge badge-neutral" style="font-size:0.72rem;">Idle</div>
+          </div>
+        </div>
+
+        <!-- Mutual Exclusivity Proof -->
+        <h4 style="font-size:0.95rem; color:#fff; text-transform:uppercase; letter-spacing:0.04em; margin:1.5rem 0 0.5rem;">
+          3. Proof of Mutual Exclusivity (Complementarity Theorem)
+        </h4>
+        <pre class="code-block">
+Theorem: The output functions APPROVE and REJECT are mutually disjoint for all valuations of (A, B, C, D).
+Proof:
+  APPROVE · REJECT = (A · B · C · D') · (D + A' · B')
+Applying the Distributive Law:
+                   = (A · B · C · D' · D) + (A · B · C · D' · A' · B')
+Applying the Complement Law (X · X' ≡ 0):
+  Since D' · D ≡ 0, the first product term evaluates to 0.
+  Since A · A' ≡ 0, the second product term evaluates to 0.
+Hence:
+  APPROVE · REJECT ≡ 0 + 0 ≡ 0  (Identically False)
+
+Corrollary:
+  Since REVIEW = (APPROVE + REJECT)', exactly one signal from {APPROVE, REJECT, REVIEW} 
+  assumes the value 1 for any input vector. This satisfies the 1-hot priority encoding specification.
+        </pre>
+
+        <!-- 4. Interactive Elementary Logic Gate Playground Lab -->
+        <div class="gate-lab-container">
+          <div style="display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:0.5rem; margin-bottom:0.75rem;">
+            <div>
+              <h4 style="font-size:1rem; font-weight:700; color:#fff; margin:0; display:flex; align-items:center; gap:0.5rem;">
+                <span class="badge" style="background:rgba(139, 92, 246, 0.15); color:#c084fc; font-size:0.72rem;">LAB BENCH</span>
+                <span>Interactive Elementary Logic Gate & Truth Probe Lab</span>
+              </h4>
+              <p style="font-size:0.78rem; color:var(--text-secondary); margin:2px 0 0 0;">
+                Test fundamental digital logic gates. Toggle binary inputs A and B to observe real-time output propagation and truth table assertions.
+              </p>
+            </div>
+          </div>
+
+          <!-- Gate Selector Buttons -->
+          <div class="gate-selector-bar">
+            <button class="gate-btn active" data-gate="AND" onclick="selectPlaygroundGate('AND')">AND Gate (·)</button>
+            <button class="gate-btn" data-gate="OR" onclick="selectPlaygroundGate('OR')">OR Gate (+)</button>
+            <button class="gate-btn" data-gate="NOT" onclick="selectPlaygroundGate('NOT')">NOT Gate (')</button>
+            <button class="gate-btn" data-gate="NAND" onclick="selectPlaygroundGate('NAND')">NAND Gate</button>
+            <button class="gate-btn" data-gate="NOR" onclick="selectPlaygroundGate('NOR')">NOR Gate</button>
+            <button class="gate-btn" data-gate="XOR" onclick="selectPlaygroundGate('XOR')">XOR Gate (⊕)</button>
+            <button class="gate-btn" data-gate="XNOR" onclick="selectPlaygroundGate('XNOR')">XNOR Gate (⊙)</button>
+          </div>
+
+          <!-- Playground Interactive Canvas & Truth Table -->
+          <div class="grid-2 equal-height" style="gap:1rem;">
+            <!-- Left: Interactive Gate SVG with Toggle Buttons -->
+            <div style="background:#0b1222; border:1px solid var(--border-subtle); border-radius:var(--radius-xs); padding:1rem; text-align:center;">
+              <div style="display:flex; justify-content:center; gap:1.5rem; margin-bottom:1rem;">
+                <button type="button" class="btn btn-secondary" id="gate-toggle-a" onclick="togglePlaygroundInput('A')" style="font-family:var(--font-mono); font-size:0.85rem; padding:0.4rem 1rem;">
+                  Input A: <strong style="color:var(--accent-cyan); font-size:1rem;" id="gate-val-a">0</strong>
+                </button>
+                <button type="button" class="btn btn-secondary" id="gate-toggle-b" onclick="togglePlaygroundInput('B')" style="font-family:var(--font-mono); font-size:0.85rem; padding:0.4rem 1rem;">
+                  Input B: <strong style="color:var(--accent-cyan); font-size:1rem;" id="gate-val-b">0</strong>
+                </button>
+              </div>
+
+              <!-- Animated Gate SVG -->
+              <div id="playground-svg-container" style="display:flex; justify-content:center; align-items:center; min-height:130px;">
+                <!-- SVG dynamically updated via JS -->
+              </div>
+
+              <div style="margin-top:0.75rem; font-family:var(--font-mono); font-size:0.9rem; color:#fff;">
+                Boolean Function: <span id="playground-formula" style="color:var(--accent-cyan); font-weight:700;">Y = A · B</span>
+              </div>
+            </div>
+
+            <!-- Right: Dynamic Mini Truth Table -->
+            <div style="background:#0b1222; border:1px solid var(--border-subtle); border-radius:var(--radius-xs); padding:1rem;">
+              <div style="font-size:0.75rem; color:var(--text-muted); text-transform:uppercase; font-weight:700; margin-bottom:0.5rem;">
+                Truth Table Assertion Matrix
+              </div>
+              <table class="data-table" style="font-size:0.8rem; text-align:center;">
+                <thead>
+                  <tr>
+                    <th>Input A</th>
+                    <th id="playground-th-b">Input B</th>
+                    <th>Output Y</th>
+                    <th>Status</th>
+                  </tr>
+                </thead>
+                <tbody id="playground-tt-tbody">
+                  <!-- Dynamically populated -->
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 4. EXHAUSTIVE TRUTH TABLE -->
+    <section id="tab-truth-table" class="tab-pane">
+      <div class="section-tag">Section 4.0 • Canonical Truth Table Analysis</div>
+
+      <div class="card">
+        <div class="card-header">
+          <div>
+            <h3 class="card-title">32-State Exhaustive Truth Table ($2^5$ Minterms)</h3>
+            <p class="card-subtitle">
+              Generated programmatically from first principles via <code>engine.boolean_core</code>.
+            </p>
+          </div>
+          <div style="display:flex; gap:0.4rem; flex-wrap:wrap;">
+            <button class="btn btn-secondary tt-filter-btn active" data-filter="ALL">All (32)</button>
+            <button class="btn btn-secondary tt-filter-btn" data-filter="APPROVE">Approve (2)</button>
+            <button class="btn btn-secondary tt-filter-btn" data-filter="REJECT">Reject (20)</button>
+            <button class="btn btn-secondary tt-filter-btn" data-filter="REVIEW">Review (10)</button>
+            <a href="/data/truth_table.csv" download class="btn btn-secondary" style="font-size:0.75rem;">Export CSV</a>
+          </div>
+        </div>
+
+        <div class="table-responsive" style="max-height: 520px;">
+          <table class="data-table truth-table">
+            <thead>
+              <tr>
+                <th style="text-align:center;">Row #</th>
+                <th style="text-align:center;">A (Inflow)</th>
+                <th style="text-align:center;">B (Score)</th>
+                <th style="text-align:center;">C (Age)</th>
+                <th style="text-align:center;">D (Default)</th>
+                <th style="text-align:center;">E (Asset)</th>
+                <th style="text-align:center;">APPROVE</th>
+                <th style="text-align:center;">REJECT</th>
+                <th style="text-align:center;">REVIEW</th>
+                <th style="text-align:center;">Decisional State</th>
+              </tr>
+            </thead>
+            <tbody id="truth-table-body">
+              <!-- Rendered via JavaScript -->
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </section>
+
+    <!-- 5. KARNAUGH MAP STUDIO -->
+    <section id="tab-simplification" class="tab-pane">
+      <div class="section-tag">Section 5.0 • Karnaugh Map & Quine-McCluskey Reduction Studio</div>
+
+      <div class="card">
+        <div class="card-header">
+          <div>
+            <h3 class="card-title">Karnaugh Map Minimization & Algebraic Verification Proof</h3>
+            <p class="card-subtitle">
+              Interactive 4-variable Gray code subcube analysis and symbolic minimization engine.
+            </p>
+          </div>
+          <div class="badge badge-success" id="verify-status">
+            Formally Verified: 32/32 Matches (0 Discrepancies)
+          </div>
+        </div>
+
+        <!-- Plain English Analogy Box -->
+        <div class="plain-english-card">
+          <div class="plain-english-badge">💡 In Plain English — What is a K-Map?</div>
+          <div class="plain-english-title">A Visual Cheat Sheet for Making Circuits Smaller &amp; Faster</div>
+          <p class="plain-english-desc">
+            Instead of doing pages of confusing algebra by hand, engineers use a <strong>Karnaugh Map (K-Map)</strong> grid. 
+            We place our <strong>1</strong>s into a 4&times;4 board. Whenever 1s are adjacent to each other (even wrapping around edges like Pac-Man!), 
+            we circle them in groups of 2, 4, or 8. Each circle simplifies our circuit, saving microchip pins, lowering heat, and speeding up execution!
+          </p>
+        </div>
+
+        <!-- 3D Interactive Karnaugh Hypercube Stage -->
+        <div class="canvas-3d-wrapper">
+          <div class="canvas-3d-header">
+            <div class="canvas-3d-title">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="var(--accent-cyan)" stroke-width="2">
+                <rect x="3" y="3" width="18" height="18" rx="2"></rect>
+                <line x1="9" y1="3" x2="9" y2="21"></line>
+                <line x1="15" y1="3" x2="15" y2="21"></line>
+                <line x1="3" y1="9" x2="21" y2="9"></line>
+                <line x1="3" y1="15" x2="21" y2="15"></line>
+              </svg>
+              <span>3D Karnaugh Hypercube (4-Variable Spatial Adjacency Grid)</span>
+            </div>
+            <span class="canvas-3d-hint">👆 Drag to spin • Click spheres to inspect</span>
+          </div>
+
+          <!-- Model Purpose Banner -->
+          <div class="canvas-3d-purpose-banner">
+            <span class="canvas-3d-purpose-tag">🎯 Model Purpose</span>
+            <span>
+              <strong>Solves the Wrap-Around Adjacency Mystery:</strong> On flat 2D paper, it is hard to understand why top/bottom rows or left/right columns wrap around like Pac-Man. 
+              In 3D space, this 16-node hypercube physically connects all single-bit Gray code neighbors with laser lines, showing visually why grouping adjacent 1s eliminates redundant gates and shrinks circuit size!
+            </span>
+          </div>
+
+          <div id="kmap-3d-canvas" class="canvas-3d-viewport"></div>
+
+          <!-- Interactive Controls Toolbar -->
+          <div class="canvas-3d-toolbar">
+            <div class="canvas-3d-btn-group">
+              <button type="button" class="canvas-3d-btn" id="kmap-btn-spin" onclick="toggleKMapSpinBtn()" title="Toggle auto rotation">
+                <span>🔄</span> <span id="kmap-spin-label">Auto-Spin: ON</span>
+              </button>
+              <button type="button" class="canvas-3d-btn" onclick="highlightCurrentSimMintermOn3D()" title="Snap focus to active simulator minterm">
+                <span>🎯</span> <span>Highlight Active State</span>
+              </button>
+              <button type="button" class="canvas-3d-btn" onclick="window.EC2201_3D && window.EC2201_3D.resetKMapView()" title="Reset angle">
+                <span>⟲</span> <span>Reset View</span>
+              </button>
+            </div>
+            <div id="kmap-3d-hud-text" class="canvas-3d-hud-text">
+              Click any 3D node sphere to inspect minterm &amp; sync with K-Map table
+            </div>
+          </div>
+        </div>
+
+        <!-- Side-by-side expressions -->
+        <div class="grid-2" style="margin-bottom:1.25rem;">
+          <div style="background:#0b1222; padding:1rem; border-radius:var(--radius-sm); border:1px solid var(--border-subtle);">
+            <div style="color:var(--text-muted); font-size:0.75rem; text-transform:uppercase; font-weight:700; margin-bottom:0.4rem;">Design Specification Formulas</div>
+            <div class="math-formula">APPROVE = A · B · C · D'</div>
+            <div class="math-formula">REJECT  = D + A' · B'</div>
+            <div class="math-formula">REVIEW  = (APPROVE + REJECT)'</div>
+          </div>
+
+          <div style="background:#0b1222; padding:1rem; border-radius:var(--radius-sm); border:1px solid var(--border-strong);">
+            <div style="color:var(--accent-cobalt-light); font-size:0.75rem; text-transform:uppercase; font-weight:700; margin-bottom:0.4rem;">Minimal Sum-of-Products (SymPy Quine-McCluskey)</div>
+            <div class="math-formula" id="sop-approve" style="color:#34d399;">A & B & C & ~D</div>
+            <div class="math-formula" id="sop-reject" style="color:#f87171;">D | (~A & ~B)</div>
+            <div class="math-formula" id="sop-review" style="color:#fbbf24;">(A & ~B & ~D) | (~A & B & ~D) | (B & ~C & ~D)</div>
+          </div>
+        </div>
+
+        <!-- Interactive K-Map Studio -->
+        <div class="card" style="background:#080c16; border-color:var(--border-subtle); padding:1.25rem; margin-bottom:0;">
+          <div style="display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:0.75rem; margin-bottom:1rem;">
+            <div>
+              <h4 style="font-size:1.05rem; font-weight:700; color:#fff; margin:0; display:flex; align-items:center; gap:0.4rem;">
+                <span>Karnaugh Map Minimization Studio</span>
+                <span class="badge" style="background:rgba(56, 189, 248, 0.15); color:#38bdf8; font-size:0.72rem;">AB &times; CD Subcube Matrix</span>
+              </h4>
+              <p style="font-size:0.8rem; color:var(--text-secondary); margin:2px 0 0 0;">
+                Interactive 4-variable Gray code minimization. Click cells to inspect minterms, hover loops to visualize grouping, or synthesize custom logic in Sandbox mode.
+              </p>
+            </div>
+            <div style="display:flex; gap:0.4rem; align-items:center;">
+              <label style="font-size:0.78rem; color:var(--text-secondary); display:flex; align-items:center; gap:0.35rem; cursor:pointer; background:#141f35; padding:0.35rem 0.65rem; border-radius:var(--radius-xs); border:1px solid var(--border-subtle);">
+                <input type="checkbox" id="kmap-loop-toggle" checked onchange="toggleKMapLoops()">
+                <span>Prime Implicant Outlines</span>
+              </label>
+              <button class="btn btn-secondary" onclick="toggleStaticKmapModal()" style="font-size:0.75rem; padding:0.35rem 0.65rem;">
+                Static Vector Plot
+              </button>
+            </div>
+          </div>
+
+          <!-- Toolbar -->
+          <div class="kmap-toolbar" style="margin-bottom:1rem;">
+            <div class="kmap-switcher">
+              <button class="kmap-switch-btn active btn-approve" data-output="APPROVE" onclick="switchKMapOutput('APPROVE')">
+                APPROVE (m₁₄)
+              </button>
+              <button class="kmap-switch-btn btn-reject" data-output="REJECT" onclick="switchKMapOutput('REJECT')">
+                REJECT (Octet + Quad)
+              </button>
+              <button class="kmap-switch-btn btn-review" data-output="REVIEW" onclick="switchKMapOutput('REVIEW')">
+                REVIEW (3 Prime Pairs)
+              </button>
+              <button class="kmap-switch-btn btn-sandbox" data-output="SANDBOX" onclick="switchKMapOutput('SANDBOX')">
+                Custom Synthesis Lab
+              </button>
+            </div>
+
+            <div id="kmap-sandbox-controls" style="display:none; gap:0.4rem; align-items:center;">
+              <span style="font-size:0.78rem; color:#c084fc; font-family:var(--font-mono);">Click cells to toggle 0 / 1</span>
+              <button class="btn btn-secondary" onclick="resetSandboxKMap()" style="font-size:0.72rem; padding:0.25rem 0.5rem;">
+                Reset
+              </button>
+            </div>
+          </div>
+
+          <!-- Side-by-Side K-Map Grid -->
+          <div class="kmap-layout-grid">
+            <!-- Left: The 4x4 Table -->
+            <div class="kmap-board-card">
+              <div id="kmap-board-wrapper" class="kmap-matrix-container highlight-loops" style="position:relative;">
+                <svg id="kmap-capsules-svg" class="kmap-capsules-overlay"></svg>
+                <table class="kmap-table" id="interactive-kmap-table">
+                  <!-- Populated via JavaScript -->
+                </table>
+              </div>
+              <div style="margin-top:0.75rem; font-size:0.74rem; color:var(--text-muted); text-align:center; display:flex; gap:1rem; justify-content:center; flex-wrap:wrap;">
+                <span><strong style="color:var(--accent-cyan);">AB:</strong> Rows (00, 01, 11, 10)</span>
+                <span><strong style="color:var(--accent-cyan);">CD:</strong> Columns (00, 01, 11, 10)</span>
+                <span><span style="display:inline-block; width:8px; height:8px; border:2px solid #38bdf8; border-radius:50%; vertical-align:middle;"></span> Radar Beacon: Current Simulator State</span>
+              </div>
+            </div>
+
+            <!-- Right: Inspector + Loop Explorer + Sandbox -->
+            <div class="kmap-inspector-card">
+              <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:0.75rem; flex-wrap:wrap; gap:0.4rem; border-bottom:1px solid var(--border-subtle); padding-bottom:0.5rem;">
+                <div style="font-weight:700; color:var(--accent-cyan); font-size:0.92rem; font-family:var(--font-mono);">
+                  <span id="kmap-inspector-title">Cell Inspector: Minterm m₁₄</span>
+                </div>
+                <div id="kmap-inspector-status" style="font-size:0.75rem; color:var(--text-muted);">
+                  Click any cell for subcube metadata
+                </div>
+              </div>
+
+              <!-- Coordinate & Literal Badges -->
+              <div class="grid-3" style="gap:0.5rem; margin-bottom:0.85rem;">
+                <div style="background:#141f35; padding:0.5rem 0.65rem; border-radius:var(--radius-xs); border:1px solid var(--border-subtle);">
+                  <div style="font-size:0.68rem; color:var(--text-muted); text-transform:uppercase; font-weight:700;">Gray Coordinates</div>
+                  <div id="kmap-cell-coord" style="font-family:var(--font-mono); font-size:0.85rem; color:#fff; font-weight:700;">AB = 11, CD = 10</div>
+                </div>
+                <div style="background:#141f35; padding:0.5rem 0.65rem; border-radius:var(--radius-xs); border:1px solid var(--border-subtle);">
+                  <div style="font-size:0.68rem; color:var(--text-muted); text-transform:uppercase; font-weight:700;">Canonical Product</div>
+                  <div id="kmap-cell-literal" style="font-family:var(--font-mono); font-size:0.85rem; color:var(--accent-cyan); font-weight:700;">A · B · C · D'</div>
+                </div>
+                <div style="background:#141f35; padding:0.5rem 0.65rem; border-radius:var(--radius-xs); border:1px solid var(--border-subtle);">
+                  <div style="font-size:0.68rem; color:var(--text-muted); text-transform:uppercase; font-weight:700;">Truth Table Rows</div>
+                  <div id="kmap-cell-ttrows" style="font-family:var(--font-mono); font-size:0.85rem; color:#fff; font-weight:700;">Row #28 & Row #29</div>
+                </div>
+              </div>
+
+              <!-- Loop Status -->
+              <div id="kmap-cell-loops-box" style="font-size:0.8rem; color:var(--text-secondary); background:rgba(20,31,53,0.5); padding:0.6rem 0.85rem; border-radius:var(--radius-xs); border:1px solid var(--border-subtle); margin-bottom:0.85rem;">
+                <strong>Prime Implicant Group:</strong> <span id="kmap-cell-loops-text">Loop 1: A·B·C·D' (Essential Prime Implicant)</span>
+              </div>
+
+              <!-- Interactive Loop Explorer Pills -->
+              <div id="kmap-loop-selector-section" style="margin-bottom:0.85rem;">
+                <div style="font-size:0.72rem; color:var(--text-muted); text-transform:uppercase; font-weight:700; margin-bottom:0.35rem;">
+                  Interactive Prime Implicant Loop Highlighter (Hover to Light Up)
+                </div>
+                <div class="kmap-loop-chips" id="kmap-interactive-loop-pills">
+                  <!-- Populated by JS based on current active function -->
+                </div>
+              </div>
+
+              <!-- Sandbox Live Solver Output -->
+              <div id="kmap-sandbox-output" style="display:none; background:rgba(139, 92, 246, 0.1); border:1px solid rgba(139, 92, 246, 0.35); padding:0.75rem 1rem; border-radius:var(--radius-xs);">
+                <div style="font-size:0.72rem; color:#c084fc; font-weight:700; text-transform:uppercase; margin-bottom:0.25rem;">
+                  Dynamically Minimized Sum-of-Products (Quine-McCluskey):
+                </div>
+                <div id="kmap-sandbox-formula" style="font-family:var(--font-mono); font-size:1.05rem; color:#fff; font-weight:700;">0</div>
+                <div style="font-size:0.72rem; color:var(--text-muted); margin-top:0.3rem;">
+                  Click cells in the matrix to add or remove minterms in real-time.
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Static K-Map image -->
+          <div id="kmap-static-modal" style="display:none; margin-top:1.25rem; padding-top:1.25rem; border-top:1px solid var(--border-subtle); text-align:center;">
+            <div style="font-size:0.8rem; color:var(--text-secondary); margin-bottom:0.4rem;">High-Resolution Publication Plot (Exported via Matplotlib)</div>
+            <img id="kmap-img" src="/static/img/kmap.png" alt="K-Map Diagram" style="max-width:100%; height:auto; border-radius:var(--radius-xs); border:1px solid var(--border-subtle);">
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 6. VERIFICATION & TESTBENCH -->
+    <section id="tab-test-cases" class="tab-pane">
+      <div class="section-tag">Section 6.0 • Automated Verification Testbench</div>
+
+      <div class="card">
+        <div class="card-header">
+          <div>
+            <h3 class="card-title">15-Vector Automated Verification Suite</h3>
+            <p class="card-subtitle">
+              10 Nominal States, 2 Critical Edge Scenarios, 2 Fault Injections (Exception Handling), and 1 Boundary Condition.
+            </p>
+          </div>
+          <button id="run-tests-btn" class="btn">
+            Execute Automated Testbench
+          </button>
+        </div>
+
+        <div id="test-stats"></div>
+
+        <div class="table-responsive">
+          <table class="data-table">
+            <thead>
+              <tr>
+                <th style="text-align:center;">Vector ID</th>
+                <th style="text-align:center;">Class</th>
+                <th>Scenario Description</th>
+                <th>Input Signals</th>
+                <th style="text-align:center;">Expected</th>
+                <th style="text-align:center;">Observed Result</th>
+                <th style="text-align:center;">Status</th>
+              </tr>
+            </thead>
+            <tbody id="test-results-tbody"></tbody>
+          </table>
+        </div>
+      </div>
+    </section>
+
+    <!-- 7. LEARNING HUB (PEDAGOGICAL COURSEWARE) -->
+    <section id="tab-learning" class="tab-pane">
+      <div class="section-tag">Section 7.0 • Interactive Learning Hub & Theory Compendium</div>
+
+      <!-- Quick Theory Navigator -->
+      <div class="learning-nav-pills" style="display:flex; gap:0.5rem; flex-wrap:wrap; margin-bottom:1.5rem;">
+        <a href="#learn-postulates" class="pill-btn active">7.1 Huntington's Postulates</a>
+        <a href="#learn-demorgan" class="pill-btn">7.2 De Morgan's Laws & Duality</a>
+        <a href="#learn-canonical" class="pill-btn">7.3 Canonical SOP & POS</a>
+        <a href="#learn-kmap" class="pill-btn">7.4 4-Variable K-Map Theory</a>
+        <a href="#learn-ttl" class="pill-btn">7.5 74xx TTL Hardware Specs</a>
+        <a href="#learn-case-study" class="pill-btn">7.6 Case Study Synthesis</a>
+      </div>
+
+      <!-- Plain English Real-World Gate Analogies -->
+      <div class="plain-english-card">
+        <div class="plain-english-badge">💡 In Plain English — Logic Gates in Everyday Life</div>
+        <div class="plain-english-title">How Digital Logic Connects to the Real World</div>
+        <p class="plain-english-desc" style="margin-bottom:0.85rem;">
+          Logic gates aren't just abstract math — they are tiny physical electronic switches found in every phone, microwave, and car!
+        </p>
+        <div class="simple-steps-grid" style="margin:0;">
+          <div class="simple-step-box">
+            <div style="font-size:1.5rem; margin-bottom:0.25rem;">🔐</div>
+            <h4 style="color:var(--accent-cyan); font-size:0.95rem; margin-bottom:0.35rem;">AND Gate: "Both Must Agree"</h4>
+            <p style="color:var(--text-secondary); font-size:0.82rem; line-height:1.5; margin:0;">
+              <strong>Bank Vault Analogy:</strong> The vault door only unlocks if <em>both</em> the Branch Manager <strong>AND</strong> the Security Officer insert their keys at the same time.
+            </p>
+          </div>
+          <div class="simple-step-box">
+            <div style="font-size:1.5rem; margin-bottom:0.25rem;">🚪</div>
+            <h4 style="color:#10b981; font-size:0.95rem; margin-bottom:0.35rem;">OR Gate: "Either One Works"</h4>
+            <p style="color:var(--text-secondary); font-size:0.82rem; line-height:1.5; margin:0;">
+              <strong>Door Sensor Analogy:</strong> The automatic supermarket door opens if the motion sensor detects you <strong>OR</strong> someone presses the manual push button.
+            </p>
+          </div>
+          <div class="simple-step-box">
+            <div style="font-size:1.5rem; margin-bottom:0.25rem;">🔄</div>
+            <h4 style="color:#f59e0b; font-size:0.95rem; margin-bottom:0.35rem;">NOT Gate: "The Opposite"</h4>
+            <p style="color:var(--text-secondary); font-size:0.82rem; line-height:1.5; margin:0;">
+              <strong>Fridge Light Analogy:</strong> When the door switch is pushed IN (1), the light turns OFF (0). When the door is released (0), the light turns ON (1).
+            </p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Module 7.1: Huntington's Postulates & Algebraic Theorems -->
+      <div id="learn-postulates" class="card" style="margin-bottom:1.75rem;">
+        <div class="card-header">
+          <div>
+            <h3 class="card-title">7.1 Huntington's Postulates & Switching Algebra Theorems</h3>
+            <p class="card-subtitle">
+              Fundamental mathematical axioms governing two-valued Boolean algebra $(B, +, \cdot, ', 0, 1)$ established by E. V. Huntington (1904).
+            </p>
+          </div>
+          <div class="badge badge-accent">Core Syllabus • CO1</div>
+        </div>
+
+        <div class="grid-2">
+          <!-- Postulates Table -->
+          <div style="background:#0b1222; padding:1.25rem; border-radius:var(--radius-sm); border:1px solid var(--border-subtle);">
+            <h4 style="color:var(--accent-cyan); font-size:0.9rem; margin-bottom:0.75rem; text-transform:uppercase; letter-spacing:0.04em;">Standard Theorems of Boolean Algebra</h4>
+            <div class="table-responsive">
+              <table class="data-table" style="font-size:0.82rem;">
+                <thead>
+                  <tr>
+                    <th>Theorem / Postulate</th>
+                    <th>Dual Form 1 (OR / Sum)</th>
+                    <th>Dual Form 2 (AND / Product)</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td><strong>Identity Law</strong></td>
+                    <td><code>A + 0 = A</code></td>
+                    <td><code>A · 1 = A</code></td>
+                  </tr>
+                  <tr>
+                    <td><strong>Null Elements (Dominance)</strong></td>
+                    <td><code>A + 1 = 1</code></td>
+                    <td><code>A · 0 = 0</code></td>
+                  </tr>
+                  <tr>
+                    <td><strong>Idempotent Law</strong></td>
+                    <td><code>A + A = A</code></td>
+                    <td><code>A · A = A</code></td>
+                  </tr>
+                  <tr>
+                    <td><strong>Complementarity</strong></td>
+                    <td><code>A + A' = 1</code></td>
+                    <td><code>A · A' = 0</code></td>
+                  </tr>
+                  <tr>
+                    <td><strong>Involution (Double Negation)</strong></td>
+                    <td colspan="2" style="text-align:center;"><code>(A')' = A</code></td>
+                  </tr>
+                  <tr>
+                    <td><strong>Commutative Law</strong></td>
+                    <td><code>A + B = B + A</code></td>
+                    <td><code>A · B = B · A</code></td>
+                  </tr>
+                  <tr>
+                    <td><strong>Distributive Law</strong></td>
+                    <td><code>A + (B · C) = (A + B) · (A + C)</code></td>
+                    <td><code>A · (B + C) = A · B + A · C</code></td>
+                  </tr>
+                  <tr>
+                    <td><strong>Absorption Law</strong></td>
+                    <td><code>A + A · B = A</code></td>
+                    <td><code>A · (A + B) = A</code></td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+
+          <!-- Interactive Theorem Prover Widget -->
+          <div style="background:#0b1222; padding:1.25rem; border-radius:var(--radius-sm); border:1px solid var(--border-subtle);">
+            <h4 style="color:var(--accent-emerald); font-size:0.9rem; margin-bottom:0.75rem; text-transform:uppercase; letter-spacing:0.04em;">Interactive Theorem Prover</h4>
+            <p style="font-size:0.8rem; color:var(--text-secondary); margin-bottom:1rem;">
+              Select an algebraic theorem and toggle input signals $A, B, C$ to verify that the Left-Hand Side (LHS) and Right-Hand Side (RHS) remain strictly identical for all binary valuations.
+            </p>
+
+            <div style="margin-bottom:1rem;">
+              <label style="font-size:0.75rem; color:var(--text-muted); text-transform:uppercase; font-weight:700;">Select Theorem to Prove:</label>
+              <select id="theorem-select" class="form-control" style="background:#0f172a; color:#fff; border:1px solid var(--border-subtle); padding:0.5rem; border-radius:var(--radius-xs); width:100%; font-size:0.85rem; margin-top:0.25rem;">
+                <option value="absorption1">Absorption Law 1: A + A · B = A</option>
+                <option value="absorption2">Absorption Law 2: A · (A + B) = A</option>
+                <option value="distributive">Distributive Law: A + (B · C) = (A + B) · (A + C)</option>
+                <option value="demorgan1">De Morgan Law 1: (A · B)' = A' + B'</option>
+                <option value="demorgan2">De Morgan Law 2: (A + B)' = A' · B'</option>
+                <option value="consensus">Consensus Theorem: A·B + A'·C + B·C = A·B + A'·C</option>
+              </select>
+            </div>
+
+            <!-- Input Signal Toggles -->
+            <div style="display:flex; gap:1.5rem; align-items:center; margin-bottom:1.25rem; background:#070d19; padding:0.75rem 1rem; border-radius:var(--radius-xs); border:1px solid var(--border-subtle);">
+              <div style="display:flex; align-items:center; gap:0.5rem;">
+                <span style="font-family:var(--font-mono); font-weight:700; color:var(--accent-cyan);">A:</span>
+                <button id="thm-toggle-a" class="btn btn-sm" onclick="toggleTheoremVar('A')" style="font-family:var(--font-mono); min-width:32px;">0</button>
+              </div>
+              <div style="display:flex; align-items:center; gap:0.5rem;">
+                <span style="font-family:var(--font-mono); font-weight:700; color:var(--accent-cyan);">B:</span>
+                <button id="thm-toggle-b" class="btn btn-sm" onclick="toggleTheoremVar('B')" style="font-family:var(--font-mono); min-width:32px;">0</button>
+              </div>
+              <div id="thm-c-container" style="display:flex; align-items:center; gap:0.5rem;">
+                <span style="font-family:var(--font-mono); font-weight:700; color:var(--accent-cyan);">C:</span>
+                <button id="thm-toggle-c" class="btn btn-sm" onclick="toggleTheoremVar('C')" style="font-family:var(--font-mono); min-width:32px;">0</button>
+              </div>
+            </div>
+
+            <!-- Live Proof Verification Card -->
+            <div style="display:grid; grid-template-columns:1fr 1fr; gap:0.75rem; text-align:center;">
+              <div style="background:#070d19; padding:0.75rem; border-radius:var(--radius-xs); border:1px solid var(--border-subtle);">
+                <div style="font-size:0.72rem; color:var(--text-muted); text-transform:uppercase; font-weight:700;">Left-Hand Side (LHS)</div>
+                <div id="thm-lhs-expr" style="font-family:var(--font-mono); font-size:0.8rem; color:#94a3b8; margin:0.25rem 0;">A + A · B</div>
+                <div id="thm-lhs-val" style="font-family:var(--font-mono); font-size:1.5rem; font-weight:800; color:var(--accent-cyan);">0</div>
+              </div>
+              <div style="background:#070d19; padding:0.75rem; border-radius:var(--radius-xs); border:1px solid var(--border-subtle);">
+                <div style="font-size:0.72rem; color:var(--text-muted); text-transform:uppercase; font-weight:700;">Right-Hand Side (RHS)</div>
+                <div id="thm-rhs-expr" style="font-family:var(--font-mono); font-size:0.8rem; color:#94a3b8; margin:0.25rem 0;">A</div>
+                <div id="thm-rhs-val" style="font-family:var(--font-mono); font-size:1.5rem; font-weight:800; color:var(--accent-cyan);">0</div>
+              </div>
+            </div>
+
+            <div id="thm-status-badge" style="margin-top:0.75rem; text-align:center; padding:0.5rem; border-radius:var(--radius-xs); background:rgba(52, 211, 153, 0.15); border:1px solid #34d399; color:#34d399; font-weight:700; font-size:0.85rem;">
+              ✓ Theorem Holds: LHS (0) ≡ RHS (0)
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Module 7.2: De Morgan's Theorems & Logic Gate Duality -->
+      <div id="learn-demorgan" class="card" style="margin-bottom:1.75rem;">
+        <div class="card-header">
+          <div>
+            <h3 class="card-title">7.2 De Morgan's Theorems & Logic Gate Duality</h3>
+            <p class="card-subtitle">
+              Dual conversion between conjunction and disjunction operators using complementation: NAND $\equiv$ Inverted-Input OR, and NOR $\equiv$ Inverted-Input AND.
+            </p>
+          </div>
+          <div class="badge badge-accent">Gate Equivalence</div>
+        </div>
+
+        <div class="grid-2">
+          <!-- Mathematical Derivation -->
+          <div style="background:#0b1222; padding:1.25rem; border-radius:var(--radius-sm); border:1px solid var(--border-subtle);">
+            <h4 style="color:var(--accent-cyan); font-size:0.9rem; margin-bottom:0.75rem; text-transform:uppercase; letter-spacing:0.04em;">First Theorem: Complementation of Product</h4>
+            <div style="font-family:var(--font-mono); font-size:1.1rem; color:#fff; background:#070d19; padding:0.6rem 1rem; border-radius:var(--radius-xs); border:1px solid var(--border-subtle); margin-bottom:0.75rem;">
+              (A · B)' = A' + B'
+            </div>
+            <p style="font-size:0.82rem; color:var(--text-secondary); line-height:1.6;">
+              <strong>Engineering Principle:</strong> The complement of a conjunction is the disjunction of the complements. In circuit hardware, a <strong>NAND gate</strong> (AND gate followed by an inversion bubble) is logically identical to a <strong>Bubbled OR gate</strong> (OR gate with inverted inputs).
+            </p>
+
+            <h4 style="color:var(--accent-cyan); font-size:0.9rem; margin-top:1.25rem; margin-bottom:0.75rem; text-transform:uppercase; letter-spacing:0.04em;">Second Theorem: Complementation of Sum</h4>
+            <div style="font-family:var(--font-mono); font-size:1.1rem; color:#fff; background:#070d19; padding:0.6rem 1rem; border-radius:var(--radius-xs); border:1px solid var(--border-subtle); margin-bottom:0.75rem;">
+              (A + B)' = A' · B'
+            </div>
+            <p style="font-size:0.82rem; color:var(--text-secondary); line-height:1.6;">
+              <strong>Engineering Principle:</strong> The complement of a disjunction is the conjunction of the complements. In circuit hardware, a <strong>NOR gate</strong> is logically identical to a <strong>Bubbled AND gate</strong>.
+            </p>
+          </div>
+
+          <!-- Interactive Gate Duality Visualizer -->
+          <div style="background:#0b1222; padding:1.25rem; border-radius:var(--radius-sm); border:1px solid var(--border-subtle); text-align:center;">
+            <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:1rem;">
+              <h4 style="color:var(--accent-emerald); font-size:0.9rem; margin:0; text-transform:uppercase; letter-spacing:0.04em;">Interactive Duality Schematic</h4>
+              <button id="duality-mode-toggle" class="btn btn-sm" onclick="toggleDualityVisualizer()">
+                Switch to Theorem 2 (NOR)
+              </button>
+            </div>
+
+            <!-- SVG Schematic Visualizing Gate Duality -->
+            <div style="background:#070d19; padding:1.5rem; border-radius:var(--radius-xs); border:1px solid var(--border-subtle); min-height:170px; display:flex; align-items:center; justify-content:center;">
+              <svg id="demorgan-svg" width="380" height="130" viewBox="0 0 380 130">
+                <!-- NAND Gate (LHS) -->
+                <text x="75" y="20" fill="#94a3b8" font-size="12" text-anchor="middle" font-weight="700">NAND Gate: (A·B)'</text>
+                <line x1="20" y1="50" x2="50" y2="50" stroke="#38bdf8" stroke-width="2"/>
+                <line x1="20" y1="80" x2="50" y2="80" stroke="#38bdf8" stroke-width="2"/>
+                <text x="12" y="54" fill="#94a3b8" font-size="11" font-weight="700">A</text>
+                <text x="12" y="84" fill="#94a3b8" font-size="11" font-weight="700">B</text>
+                <path d="M 50 40 L 75 40 A 25 25 0 0 1 75 90 L 50 90 Z" fill="#0f172a" stroke="#38bdf8" stroke-width="2"/>
+                <circle cx="104" cy="65" r="4" fill="#070d19" stroke="#38bdf8" stroke-width="2"/>
+                <line x1="108" y1="65" x2="135" y2="65" stroke="#38bdf8" stroke-width="2"/>
+
+                <!-- Equivalence symbol -->
+                <text x="175" y="72" fill="#34d399" font-size="24" font-weight="800" text-anchor="middle">≡</text>
+
+                <!-- Bubbled OR Gate (RHS) -->
+                <text x="285" y="20" fill="#94a3b8" font-size="12" text-anchor="middle" font-weight="700">Bubbled OR: A' + B'</text>
+                <line x1="215" y1="50" x2="238" y2="50" stroke="#38bdf8" stroke-width="2"/>
+                <line x1="215" y1="80" x2="238" y2="80" stroke="#38bdf8" stroke-width="2"/>
+                <text x="207" y="54" fill="#94a3b8" font-size="11" font-weight="700">A</text>
+                <text x="207" y="84" fill="#94a3b8" font-size="11" font-weight="700">B</text>
+                <circle cx="242" cy="50" r="4" fill="#070d19" stroke="#38bdf8" stroke-width="2"/>
+                <circle cx="242" cy="80" r="4" fill="#070d19" stroke="#38bdf8" stroke-width="2"/>
+                <path d="M 246 40 Q 265 65 246 90 Q 275 90 295 65 Q 275 40 246 40 Z" fill="#0f172a" stroke="#38bdf8" stroke-width="2"/>
+                <line x1="295" y1="65" x2="330" y2="65" stroke="#38bdf8" stroke-width="2"/>
+              </svg>
+            </div>
+            <div id="demorgan-caption" style="font-size:0.75rem; color:var(--text-muted); margin-top:0.75rem;">
+              Figure 7.2A: Hardware duality equivalence between standard NAND and Inverted-Input OR.
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Module 7.3: Canonical SOP & POS -->
+      <div id="learn-canonical" class="card" style="margin-bottom:1.75rem;">
+        <div class="card-header">
+          <div>
+            <h3 class="card-title">7.3 Canonical Forms: Sum-of-Products (SOP) & Product-of-Sums (POS)</h3>
+            <p class="card-subtitle">
+              Standard representations expressing any Boolean switching function as a disjunction of fundamental minterms ($m_i$) or conjunction of maxterms ($M_i$).
+            </p>
+          </div>
+          <div class="badge badge-accent">CO2 Syllabus</div>
+        </div>
+
+        <div class="grid-2">
+          <div style="background:#0b1222; padding:1.25rem; border-radius:var(--radius-sm); border:1px solid var(--border-subtle);">
+            <h4 style="color:var(--accent-cyan); font-size:0.9rem; margin-bottom:0.75rem; text-transform:uppercase; letter-spacing:0.04em;">Canonical Minterm Expansion ($\Sigma m$)</h4>
+            <p style="font-size:0.82rem; color:var(--text-secondary); line-height:1.6;">
+              A <strong>minterm</strong> is a product (AND term) containing all input variables in either true or complemented form that produces a <code>1</code> for exactly one combination of input variables.
+            </p>
+            <div style="background:#070d19; padding:0.75rem; border-radius:var(--radius-xs); border:1px solid var(--border-subtle); margin:0.75rem 0;">
+              <div style="font-size:0.75rem; color:var(--text-muted); margin-bottom:0.25rem;">General 4-Variable Formulation:</div>
+              <code style="color:var(--accent-cyan); font-size:0.85rem;">F(A,B,C,D) = Σ m(i) = m_k + m_l + ...</code>
+            </div>
+            <p style="font-size:0.82rem; color:var(--text-secondary); line-height:1.6;">
+              In our loan approval rule, the function is true only when $A=1, B=1, C=1, D=0$. In decimal binary encoding, $1110_2 = 14_{10}$, so:
+            </p>
+            <div style="background:#070d19; padding:0.75rem; border-radius:var(--radius-xs); border:1px solid var(--border-subtle);">
+              <code style="color:#34d399; font-weight:700; font-size:0.9rem;">F_APPROVE(A,B,C,D) = Σ m(14) = A · B · C · D'</code>
+            </div>
+          </div>
+
+          <div style="background:#0b1222; padding:1.25rem; border-radius:var(--radius-sm); border:1px solid var(--border-subtle);">
+            <h4 style="color:var(--accent-cyan); font-size:0.9rem; margin-bottom:0.75rem; text-transform:uppercase; letter-spacing:0.04em;">Canonical Maxterm Expansion ($\Pi M$)</h4>
+            <p style="font-size:0.82rem; color:var(--text-secondary); line-height:1.6;">
+              A <strong>maxterm</strong> is a sum (OR term) containing all variables that produces a <code>0</code> for exactly one input combination. In maxterm notation, uncomplemented variables represent <code>0</code> and complemented variables represent <code>1</code>:
+            </p>
+            <div style="background:#070d19; padding:0.75rem; border-radius:var(--radius-xs); border:1px solid var(--border-subtle); margin:0.75rem 0;">
+              <div style="font-size:0.75rem; color:var(--text-muted); margin-bottom:0.25rem;">General Maxterm Formulation:</div>
+              <code style="color:var(--accent-cobalt-light); font-size:0.85rem;">F(A,B,C,D) = Π M(j) where j ∉ {minterms}</code>
+            </div>
+            <p style="font-size:0.82rem; color:var(--text-secondary); line-height:1.6;">
+              <strong>Duality Principle:</strong> Any function's canonical POS is the complement of the non-minterms:
+              $\Sigma m(14) \equiv \Pi M(0,1,2,3,4,5,6,7,8,9,10,11,12,13,15)$.
+            </p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Module 7.4: 4-Variable K-Map Theory -->
+      <div id="learn-kmap" class="card" style="margin-bottom:1.75rem;">
+        <div class="card-header">
+          <div>
+            <h3 class="card-title">7.4 4-Variable Karnaugh Map (K-Map) Theory & Grouping Axioms</h3>
+            <p class="card-subtitle">
+              Topological minimization technique based on adjacent Gray-code hamming distance of 1.
+            </p>
+          </div>
+          <div class="badge badge-accent">CO3 Syllabus</div>
+        </div>
+
+        <div class="grid-3">
+          <div style="background:#0b1222; padding:1.25rem; border-radius:var(--radius-sm); border:1px solid var(--border-subtle);">
+            <h4 style="color:var(--accent-cyan); font-size:0.85rem; margin-bottom:0.5rem; text-transform:uppercase;">1. Gray Code Adjacency</h4>
+            <p style="font-size:0.8rem; color:var(--text-secondary); line-height:1.6;">
+              Row and column axes are encoded in Gray code: $00 \to 01 \to 11 \to 10$. Adjacent physical cells differ by exactly <strong>one bit</strong>, enabling algebraic elimination of redundant literals:
+              <code>A·B + A·B' = A(B + B') = A</code>.
+            </p>
+          </div>
+          <div style="background:#0b1222; padding:1.25rem; border-radius:var(--radius-sm); border:1px solid var(--border-subtle);">
+            <h4 style="color:var(--accent-cyan); font-size:0.85rem; margin-bottom:0.5rem; text-transform:uppercase;">2. Toroidal Wrap-Around</h4>
+            <p style="font-size:0.8rem; color:var(--text-secondary); line-height:1.6;">
+              The K-map is geometrically continuous across boundaries (torus surface).
+              The far-left column ($00$) is adjacent to the far-right column ($10$).
+              The top row ($00$) is adjacent to the bottom row ($10$). The 4 corner cells form a single valid <strong>Quad</strong> ($m_0, m_2, m_8, m_{10} = B'D'$).
+            </p>
+          </div>
+          <div style="background:#0b1222; padding:1.25rem; border-radius:var(--radius-sm); border:1px solid var(--border-subtle);">
+            <h4 style="color:var(--accent-cyan); font-size:0.85rem; margin-bottom:0.5rem; text-transform:uppercase;">3. Subcube Sizing Rules</h4>
+            <p style="font-size:0.8rem; color:var(--text-secondary); line-height:1.6;">
+              Group sizes must strictly equal powers of 2 ($2^k \in \{1, 2, 4, 8, 16\}$).
+              - 1 Cell: 4 Literals
+              - 2 Cells (Pair): 3 Literals (1 eliminated)
+              - 4 Cells (Quad): 2 Literals (2 eliminated)
+              - 8 Cells (Octet): 1 Literal (3 eliminated)
+            </p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Module 7.5: 74xx TTL Hardware Specs -->
+      <div id="learn-ttl" class="card" style="margin-bottom:1.75rem;">
+        <div class="card-header">
+          <div>
+            <h3 class="card-title">7.5 74xx Series Transistor-Transistor Logic (TTL) Hardware Specifications</h3>
+            <p class="card-subtitle">
+              Practical electrical engineering parameters for physical gate implementations.
+            </p>
+          </div>
+          <div class="badge badge-accent">CO4 Syllabus</div>
+        </div>
+
+        <div class="table-responsive">
+          <table class="data-table" style="font-size:0.83rem;">
+            <thead>
+              <tr>
+                <th>IC Part #</th>
+                <th>Logic Function</th>
+                <th>Package Gate Count</th>
+                <th>Typ. Propagation Delay ($t_{pd}$)</th>
+                <th>Max Supply ($V_{CC}$)</th>
+                <th>Application in Loan Engine</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td><strong>74LS04</strong></td>
+                <td>Hex Inverter / NOT</td>
+                <td>6 Independent Inverters</td>
+                <td>$9.5 \text{ ns}$</td>
+                <td>$5.0 \text{ V} \pm 5\%$</td>
+                <td>Generates inverted credit signals $A', B', C', D'$</td>
+              </tr>
+              <tr>
+                <td><strong>74LS08</strong></td>
+                <td>Quad 2-Input AND Gate</td>
+                <td>4 Independent 2-Input ANDs</td>
+                <td>$9.0 \text{ ns}$</td>
+                <td>$5.0 \text{ V} \pm 5\%$</td>
+                <td>Implements Stage 1 ($T_1, T_2$) and Stage 2 ($\text{APPROVE} = T_1 \cdot T_2$)</td>
+              </tr>
+              <tr>
+                <td><strong>74LS32</strong></td>
+                <td>Quad 2-Input OR Gate</td>
+                <td>4 Independent 2-Input ORs</td>
+                <td>$14.0 \text{ ns}$</td>
+                <td>$5.0 \text{ V} \pm 5\%$</td>
+                <td>Synthesizes multi-term disjunctions for REJECT and REVIEW</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+      <!-- Module 7.6: Case Study Digital Formulation -->
+      <div id="learn-case-study" class="card">
+        <div class="card-header">
+          <div>
+            <h3 class="card-title">7.6 Case Study Synthesis: Automated Underwriting Engine</h3>
+            <p class="card-subtitle">
+              Formal mathematical derivation converting commercial lending policy into switching algebra.
+            </p>
+          </div>
+          <div class="badge badge-success">Formally Verified</div>
+        </div>
+
+        <div class="grid-2">
+          <div style="background:#0b1222; padding:1.25rem; border-radius:var(--radius-sm); border:1px solid var(--border-subtle);">
+            <h4 style="color:var(--accent-cyan); font-size:0.9rem; margin-bottom:0.75rem; text-transform:uppercase;">Decisional Tree Breakdown</h4>
+            <div style="font-size:0.83rem; color:var(--text-secondary); line-height:1.7;">
+              <div><strong>1. APPROVE:</strong> Requires all mandatory solvency criteria simultaneously:</div>
+              <div style="margin:0.3rem 0 0.6rem 0.75rem; font-family:var(--font-mono); color:#34d399;">
+                APPROVE = A · B · C · D'
+              </div>
+              <div>Decomposed into 2-Input 74LS08 Quad AND gates:</div>
+              <ul style="padding-left:1.5rem; margin:0.25rem 0;">
+                <li><code>T₁ = A · B</code> (Good Credit AND High Income)</li>
+                <li><code>T₂ = C · D'</code> (Valid Collateral AND No Default)</li>
+                <li><code>APPROVE = T₁ · T₂</code></li>
+              </ul>
+              <div><strong>2. REJECT:</strong> Catastrophic risk conditions:</div>
+              <div style="margin:0.3rem 0 0.6rem 0.75rem; font-family:var(--font-mono); color:#f87171;">
+                REJECT = D + A' · B'
+              </div>
+              <div><strong>3. REVIEW:</strong> Complementary borderline evaluations:</div>
+              <div style="margin:0.3rem 0 0.6rem 0.75rem; font-family:var(--font-mono); color:#fbbf24;">
+                REVIEW = (A · B' · D') + (A' · B · D') + (B · C' · D')
+              </div>
+            </div>
+          </div>
+
+          <div style="background:#0b1222; padding:1.25rem; border-radius:var(--radius-sm); border:1px solid var(--border-subtle);">
+            <h4 style="color:var(--accent-cyan); font-size:0.9rem; margin-bottom:0.75rem; text-transform:uppercase;">Theorem of Mutual Exclusivity</h4>
+            <p style="font-size:0.82rem; color:var(--text-secondary); line-height:1.6;">
+              In mission-critical autonomous systems, concurrent contradictory decisions are catastrophic. We prove formal mutual exclusivity:
+            </p>
+            <div style="background:#070d19; padding:0.75rem; border-radius:var(--radius-xs); border:1px solid var(--border-subtle); margin:0.75rem 0; font-family:var(--font-mono); font-size:0.82rem; color:#fff;">
+              APPROVE · REJECT = (A · B · C · D') · (D + A' · B')<br>
+              = (A · B · C · D' · D) + (A · B · C · D' · A' · B')<br>
+              = (A · B · C · 0) + (0 · B · C · D' · B')<br>
+              = 0 + 0 ≡ 0 (Contradiction / False)
+            </div>
+            <p style="font-size:0.82rem; color:#34d399; font-weight:700;">
+              ✓ Mathematical Proof: Under no circumstances can a loan be simultaneously Approved and Rejected.
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 8. PRACTICE LAB (INTERACTIVE WORKBENCHES) -->
+    <section id="tab-practicing" class="tab-pane">
+      <div class="section-tag">Section 8.0 • Hands-on Practice Lab & Interactive Drills</div>
+
+      <div class="card" style="margin-bottom:1.5rem;">
+        <div class="card-header">
+          <div>
+            <h3 class="card-title">Digital Systems Interactive Practice Lab</h3>
+            <p class="card-subtitle">
+              Select an interactive workbench to build practical problem-solving proficiency in truth table derivation, K-Map subcube grouping, and algebraic simplification.
+            </p>
+          </div>
+          <div style="display:flex; gap:0.5rem;">
+            <button class="btn btn-sm practice-mode-btn active" onclick="switchPracticeWorkbench('truth-table-drill')">1. Truth Table Drill</button>
+            <button class="btn btn-sm practice-mode-btn" onclick="switchPracticeWorkbench('kmap-trainer')">2. K-Map Grouping</button>
+            <button class="btn btn-sm practice-mode-btn" onclick="switchPracticeWorkbench('equivalence-sandbox')">3. Equivalence Sandbox</button>
+            <button class="btn btn-sm practice-mode-btn" onclick="switchPracticeWorkbench('gate-puzzle')">4. Logic Gate Puzzle</button>
+          </div>
+        </div>
+      </div>
+
+      <!-- Workbench 1: Truth Table Fill-in Drill -->
+      <div id="wb-truth-table-drill" class="practice-workbench-pane active">
+        <div class="card">
+          <div class="card-header">
+            <div>
+              <h3 class="card-title">Workbench 1: Truth Table Fill-in Challenge</h3>
+              <p class="card-subtitle">
+                Given the target Boolean function, toggle the output cells between <code>0</code> and <code>1</code> to synthesize the correct truth table.
+              </p>
+            </div>
+            <div style="display:flex; gap:0.75rem; align-items:center;">
+              <label style="font-size:0.75rem; color:var(--text-muted); text-transform:uppercase; font-weight:700;">Exercise:</label>
+              <select id="tt-drill-select" class="form-control" onchange="loadTruthTableDrill()" style="background:#0f172a; color:#fff; border:1px solid var(--border-subtle); padding:0.4rem 0.6rem; border-radius:var(--radius-xs); font-size:0.82rem;">
+                <option value="drill1">Drill 1: F = A · B' + C (3-Variable SOP)</option>
+                <option value="drill2">Drill 2: F = (A + B)' · C (NOR-AND Cascade)</option>
+                <option value="drill3">Drill 3: T₁ = A · B (Underwriting Stage 1A)</option>
+                <option value="drill4">Drill 4: T₂ = C · D' (Underwriting Stage 1B)</option>
+                <option value="drill5">Drill 5: APPROVE = T₁ · T₂ = A · B · C · D'</option>
+              </select>
+            </div>
+          </div>
+
+          <!-- Drill Stats & Controls -->
+          <div style="display:flex; justify-content:space-between; align-items:center; background:#0b1222; padding:0.75rem 1.25rem; border-radius:var(--radius-xs); border:1px solid var(--border-subtle); margin-bottom:1rem;">
+            <div style="display:flex; gap:1.5rem; align-items:center;">
+              <div>
+                <span style="font-size:0.75rem; color:var(--text-muted); text-transform:uppercase;">Target Formula:</span>
+                <span id="tt-drill-formula" style="font-family:var(--font-mono); font-size:1rem; font-weight:700; color:var(--accent-cyan); margin-left:0.5rem;">F = A · B' + C</span>
+              </div>
+              <div id="tt-drill-score-badge" class="badge badge-accent">Score: 0 / 8 (0%)</div>
+            </div>
+            <div style="display:flex; gap:0.5rem;">
+              <button class="btn btn-sm" onclick="checkTruthTableDrill()">Check Answers</button>
+              <button class="btn btn-sm btn-secondary" onclick="revealTruthTableHints()">Reveal Solution</button>
+              <button class="btn btn-sm btn-secondary" onclick="resetTruthTableDrill()">Reset</button>
+            </div>
+          </div>
+
+          <!-- Interactive Table Grid -->
+          <div class="table-responsive">
+            <table class="data-table" id="tt-drill-table">
+              <thead id="tt-drill-thead"></thead>
+              <tbody id="tt-drill-tbody"></tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+
+      <!-- Workbench 2: K-Map Grouping Trainer -->
+      <div id="wb-kmap-trainer" class="practice-workbench-pane" style="display:none;">
+        <div class="card">
+          <div class="card-header">
+            <div>
+              <h3 class="card-title">Workbench 2: 4-Variable K-Map Subcube Grouping Trainer</h3>
+              <p class="card-subtitle">
+                Observe the active minterms on the 4x4 matrix and deduce the minimal prime implicant term.
+              </p>
+            </div>
+            <div style="display:flex; gap:0.5rem;">
+              <select id="kmap-trainer-select" class="form-control" onchange="loadKMapChallenge()" style="background:#0f172a; color:#fff; border:1px solid var(--border-subtle); padding:0.4rem 0.6rem; border-radius:var(--radius-xs); font-size:0.82rem;">
+                <option value="ch1">Challenge 1: 4-Corner Quad (m0, m2, m8, m10)</option>
+                <option value="ch2">Challenge 2: Center 2x2 Quad (m5, m7, m13, m15)</option>
+                <option value="ch3">Challenge 3: Full 8-Cell Octet (Row 2 & Row 3)</option>
+                <option value="ch4">Challenge 4: Horizontal Edge Pair (m14, m15)</option>
+                <option value="ch5">Challenge 5: Underwriting Isolated Minterm (m14)</option>
+              </select>
+            </div>
+          </div>
+
+          <div class="grid-2">
+            <!-- 4x4 Matrix Display -->
+            <div style="background:#0b1222; padding:1.25rem; border-radius:var(--radius-sm); border:1px solid var(--border-subtle); text-align:center;">
+              <div style="font-size:0.8rem; color:var(--text-secondary); margin-bottom:0.75rem;">
+                4-Variable K-Map Grid (Gray Code Order: Rows=AB, Cols=CD)
+              </div>
+              <div id="kmap-trainer-grid-wrapper" style="display:inline-block;"></div>
+            </div>
+
+            <!-- Quiz / Term Selection Container -->
+            <div style="background:#0b1222; padding:1.25rem; border-radius:var(--radius-sm); border:1px solid var(--border-subtle);">
+              <h4 style="color:var(--accent-cyan); font-size:0.9rem; margin-bottom:0.75rem; text-transform:uppercase;">Identify Minimal Prime Implicant</h4>
+              <p id="kmap-trainer-prompt" style="font-size:0.85rem; color:var(--text-secondary); line-height:1.6; margin-bottom:1rem;">
+                What is the simplified Boolean product term resulting from grouping the highlighted minterms?
+              </p>
+
+              <!-- Option Buttons -->
+              <div id="kmap-trainer-options" style="display:flex; flex-direction:column; gap:0.5rem; margin-bottom:1rem;"></div>
+
+              <!-- Feedback Box -->
+              <div id="kmap-trainer-feedback" style="display:none; padding:0.75rem 1rem; border-radius:var(--radius-xs); font-size:0.85rem;"></div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Workbench 3: Boolean Expression Equivalence Sandbox -->
+      <div id="wb-equivalence-sandbox" class="practice-workbench-pane" style="display:none;">
+        <div class="card">
+          <div class="card-header">
+            <div>
+              <h3 class="card-title">Workbench 3: Boolean Expression Equivalence & Simplification Sandbox</h3>
+              <p class="card-subtitle">
+                Enter an algebraic simplification step and use the formal SymPy backend engine to verify if your expression is 100% logically equivalent to the original.
+              </p>
+            </div>
+            <div class="badge badge-accent">Powered by SymPy</div>
+          </div>
+
+          <div class="grid-2">
+            <!-- Input Form -->
+            <div style="background:#0b1222; padding:1.25rem; border-radius:var(--radius-sm); border:1px solid var(--border-subtle);">
+              <div style="margin-bottom:1rem;">
+                <label style="font-size:0.75rem; color:var(--text-muted); text-transform:uppercase; font-weight:700;">Quick Presets:</label>
+                <div style="display:flex; gap:0.4rem; flex-wrap:wrap; margin-top:0.35rem;">
+                  <button class="btn btn-sm btn-secondary" onclick="loadEquivPreset('absorption')">Absorption</button>
+                  <button class="btn btn-sm btn-secondary" onclick="loadEquivPreset('demorgan')">De Morgan</button>
+                  <button class="btn btn-sm btn-secondary" onclick="loadEquivPreset('consensus')">Consensus</button>
+                  <button class="btn btn-sm btn-secondary" onclick="loadEquivPreset('underwrite')">Underwriting Approval</button>
+                </div>
+              </div>
+
+              <div style="margin-bottom:1rem;">
+                <label style="font-size:0.75rem; color:var(--text-muted); text-transform:uppercase; font-weight:700;">Original Boolean Expression (Expression 1):</label>
+                <input type="text" id="equiv-expr1" class="form-control" value="A · B + A · B'" style="background:#070d19; color:#fff; font-family:var(--font-mono); border:1px solid var(--border-subtle); padding:0.6rem; border-radius:var(--radius-xs); width:100%; margin-top:0.25rem;">
+              </div>
+
+              <div style="margin-bottom:1.25rem;">
+                <label style="font-size:0.75rem; color:var(--text-muted); text-transform:uppercase; font-weight:700;">Your Proposed Simplification (Expression 2):</label>
+                <input type="text" id="equiv-expr2" class="form-control" value="A" style="background:#070d19; color:#fff; font-family:var(--font-mono); border:1px solid var(--border-subtle); padding:0.6rem; border-radius:var(--radius-xs); width:100%; margin-top:0.25rem;">
+                <div style="font-size:0.72rem; color:var(--text-muted); margin-top:0.3rem;">
+                  Notation tip: Use <code>+</code> for OR, <code>·</code> or <code>*</code> for AND, <code>'</code> or <code>~</code> for NOT (e.g. <code>A · B'</code> or <code>(A + B)'</code>).
+                </div>
+              </div>
+
+              <button class="btn" style="width:100%;" onclick="runEquivalenceCheck()">
+                Formally Verify Equivalence
+              </button>
+            </div>
+
+            <!-- Verification Results Display -->
+            <div style="background:#0b1222; padding:1.25rem; border-radius:var(--radius-sm); border:1px solid var(--border-subtle);">
+              <h4 style="color:var(--accent-cyan); font-size:0.9rem; margin-bottom:0.75rem; text-transform:uppercase;">Formal Proof & Simplification Report</h4>
+              <div id="equiv-report-box" style="background:#070d19; padding:1.25rem; border-radius:var(--radius-xs); border:1px solid var(--border-subtle); min-height:180px; display:flex; flex-direction:column; justify-content:center;">
+                <div style="color:var(--text-muted); font-size:0.85rem; text-align:center;">
+                  Click "Formally Verify Equivalence" to execute backend symbolic reduction.
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Workbench 4: Logic Gate Puzzle -->
+      <div id="wb-gate-puzzle" class="practice-workbench-pane" style="display:none;">
+        <div class="card">
+          <div class="card-header">
+            <div>
+              <h3 class="card-title">Workbench 4: 2-Input Logic Gate Hardware Puzzle</h3>
+              <p class="card-subtitle">
+                Select the correct standard TTL 2-input gate (AND, OR, NAND, NOR, XOR, XNOR) to synthesize the target truth vector.
+              </p>
+            </div>
+            <div class="badge badge-accent">74xx Series TTL</div>
+          </div>
+
+          <div class="grid-2">
+            <div style="background:#0b1222; padding:1.25rem; border-radius:var(--radius-sm); border:1px solid var(--border-subtle);">
+              <h4 style="color:var(--accent-cyan); font-size:0.9rem; margin-bottom:0.75rem; text-transform:uppercase;">Target Truth Table Specification</h4>
+              <div style="margin-bottom:0.75rem;">
+                <select id="gate-puzzle-select" class="form-control" onchange="loadGatePuzzle()" style="background:#0f172a; color:#fff; border:1px solid var(--border-subtle); padding:0.4rem 0.6rem; border-radius:var(--radius-xs); font-size:0.82rem; width:100%;">
+                  <option value="xor">Target: Inequality Comparator (Output=1 only when X ≠ Y)</option>
+                  <option value="nand">Target: Universal Inverted AND (Output=0 only when X=1, Y=1)</option>
+                  <option value="nor">Target: Active-Low OR (Output=1 only when X=0, Y=0)</option>
+                  <option value="xnor">Target: Equality Coincidence (Output=1 only when X == Y)</option>
+                </select>
+              </div>
+
+              <div class="table-responsive">
+                <table class="data-table" style="font-size:0.82rem;">
+                  <thead>
+                    <tr>
+                      <th style="text-align:center;">Input X</th>
+                      <th style="text-align:center;">Input Y</th>
+                      <th style="text-align:center;">Target Output</th>
+                      <th style="text-align:center;">Your Gate Output</th>
+                    </tr>
+                  </thead>
+                  <tbody id="gate-puzzle-tbody"></tbody>
+                </table>
+              </div>
+            </div>
+
+            <div style="background:#0b1222; padding:1.25rem; border-radius:var(--radius-sm); border:1px solid var(--border-subtle); text-align:center;">
+              <h4 style="color:var(--accent-emerald); font-size:0.9rem; margin-bottom:0.75rem; text-transform:uppercase;">Hardware Gate Selector</h4>
+              <p style="font-size:0.82rem; color:var(--text-secondary); margin-bottom:1rem;">
+                Select which 2-input logic gate should be inserted into the schematic:
+              </p>
+
+              <div style="display:grid; grid-template-columns:repeat(3, 1fr); gap:0.5rem; margin-bottom:1.25rem;">
+                <button class="btn btn-sm gate-pick-btn" onclick="pickPuzzleGate('AND')">74LS08 (AND)</button>
+                <button class="btn btn-sm gate-pick-btn" onclick="pickPuzzleGate('OR')">74LS32 (OR)</button>
+                <button class="btn btn-sm gate-pick-btn" onclick="pickPuzzleGate('NAND')">74LS00 (NAND)</button>
+                <button class="btn btn-sm gate-pick-btn" onclick="pickPuzzleGate('NOR')">74LS02 (NOR)</button>
+                <button class="btn btn-sm gate-pick-btn" onclick="pickPuzzleGate('XOR')">74LS86 (XOR)</button>
+                <button class="btn btn-sm gate-pick-btn" onclick="pickPuzzleGate('XNOR')">74LS266 (XNOR)</button>
+              </div>
+
+              <div id="gate-puzzle-status" style="padding:0.75rem; border-radius:var(--radius-xs); background:#070d19; border:1px solid var(--border-subtle); font-size:0.85rem; color:var(--text-muted);">
+                Select a gate above to test the hardware circuit.
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 9. TEST CENTER (FORMAL ASSESSMENT & CERTIFICATION) -->
+    <section id="tab-testing" class="tab-pane">
+      <div class="section-tag">Section 9.0 • Examination Center & Competency Certification</div>
+
+      <!-- Test Configuration / Start Screen -->
+      <div id="test-start-card" class="card">
+        <div class="card-header">
+          <div>
+            <h2 class="card-title">EC2201 Formal Digital Systems Competency Assessment</h2>
+            <p class="card-subtitle">
+              Comprehensive academic evaluation covering Huntington's postulates, canonical minterms, 4-variable K-Map minimization, 74xx TTL logic trees, and the Automated Underwriting Engine.
+            </p>
+          </div>
+          <div class="badge badge-accent">Timed Evaluation</div>
+        </div>
+
+        <div class="grid-3" style="margin-bottom:1.5rem;">
+          <div class="card test-tier-card active" onclick="selectTestMode(5, 5, 'Quick Quiz')" style="cursor:pointer; border:1px solid var(--accent-cyan); text-align:center; padding:1.25rem;">
+            <div style="font-size:1.8rem; font-weight:800; color:var(--accent-cyan);">5 Qs</div>
+            <div style="font-weight:700; color:#fff; margin-top:0.25rem;">Quick Concept Quiz</div>
+            <div style="font-size:0.75rem; color:var(--text-muted); margin-top:0.25rem;">5 Minutes • Foundational Axioms</div>
+          </div>
+
+          <div class="card test-tier-card" onclick="selectTestMode(10, 10, 'Midterm Assessment')" style="cursor:pointer; border:1px solid var(--border-subtle); text-align:center; padding:1.25rem;">
+            <div style="font-size:1.8rem; font-weight:800; color:var(--accent-cobalt-light);">10 Qs</div>
+            <div style="font-weight:700; color:#fff; margin-top:0.25rem;">Standard Midterm Exam</div>
+            <div style="font-size:0.75rem; color:var(--text-muted); margin-top:0.25rem;">10 Minutes • K-Maps & Circuits</div>
+          </div>
+
+          <div class="card test-tier-card" onclick="selectTestMode(15, 15, 'Comprehensive Lab Exam')" style="cursor:pointer; border:1px solid var(--border-subtle); text-align:center; padding:1.25rem;">
+            <div style="font-size:1.8rem; font-weight:800; color:#34d399;">15 Qs</div>
+            <div style="font-weight:700; color:#fff; margin-top:0.25rem;">Comprehensive Lab Exam</div>
+            <div style="font-size:0.75rem; color:var(--text-muted); margin-top:0.25rem;">15 Minutes • Full Syllabus & Case Study</div>
+          </div>
+        </div>
+
+        <div style="background:#0b1222; padding:1.25rem; border-radius:var(--radius-sm); border:1px solid var(--border-subtle); margin-bottom:1.5rem;">
+          <div style="display:flex; gap:1rem; align-items:center; flex-wrap:wrap;">
+            <div style="flex:1; min-width:250px;">
+              <label style="font-size:0.75rem; color:var(--text-muted); text-transform:uppercase; font-weight:700;">Student Full Name (For Certificate of Competency):</label>
+              <input type="text" id="student-name-input" class="form-control" placeholder="e.g., Jane Doe, B.Tech ECE" value="Student Scholar" style="background:#070d19; color:#fff; border:1px solid var(--border-subtle); padding:0.6rem 0.75rem; border-radius:var(--radius-xs); width:100%; margin-top:0.35rem;">
+            </div>
+            <div style="padding-top:1.2rem;">
+              <button class="btn btn-primary" onclick="startExamination()" style="padding:0.65rem 1.5rem; font-weight:700;">
+                Begin Examination Now →
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Active Examination Interface -->
+      <div id="test-active-view" style="display:none;">
+        <!-- Top Status Bar & Countdown -->
+        <div style="display:flex; justify-content:space-between; align-items:center; background:#0b1222; padding:0.75rem 1.25rem; border-radius:var(--radius-sm); border:1px solid var(--border-subtle); margin-bottom:1rem;">
+          <div>
+            <span id="test-active-title" style="font-weight:700; color:#fff; font-size:0.95rem;">Comprehensive Lab Exam</span>
+            <span id="test-question-counter" class="badge badge-accent" style="margin-left:0.75rem;">Question 1 of 15</span>
+          </div>
+
+          <div style="display:flex; gap:1rem; align-items:center;">
+            <div style="display:flex; align-items:center; gap:0.5rem;">
+              <span style="font-size:0.75rem; color:var(--text-muted); text-transform:uppercase;">Time Remaining:</span>
+              <span id="test-countdown" style="font-family:var(--font-mono); font-size:1.2rem; font-weight:800; color:var(--accent-cyan); background:#070d19; padding:0.25rem 0.6rem; border-radius:var(--radius-xs); border:1px solid var(--border-subtle);">15:00</span>
+            </div>
+            <button class="btn btn-sm btn-secondary" id="test-flag-btn" onclick="toggleFlagCurrentQuestion()">
+              🚩 Flag for Review
+            </button>
+            <button class="btn btn-sm btn-primary" onclick="submitExaminationPrompt()">
+              Submit Exam
+            </button>
+          </div>
+        </div>
+
+        <div class="grid-4" style="grid-template-columns: 240px 1fr 1fr 1fr; margin-bottom:1rem;">
+          <!-- Left Palette: Question Navigation -->
+          <div style="background:#0b1222; padding:1rem; border-radius:var(--radius-sm); border:1px solid var(--border-subtle); height:fit-content;">
+            <div style="font-size:0.75rem; color:var(--text-muted); text-transform:uppercase; font-weight:700; margin-bottom:0.75rem;">Question Palette</div>
+            <div id="test-palette-grid" style="display:grid; grid-template-columns:repeat(5, 1fr); gap:0.4rem;"></div>
+
+            <div style="margin-top:1rem; font-size:0.72rem; color:var(--text-secondary); line-height:1.7;">
+              <div style="display:flex; align-items:center; gap:0.4rem;"><span style="display:inline-block; width:10px; height:10px; border-radius:2px; background:#38bdf8;"></span> Active</div>
+              <div style="display:flex; align-items:center; gap:0.4rem;"><span style="display:inline-block; width:10px; height:10px; border-radius:2px; background:#34d399;"></span> Answered</div>
+              <div style="display:flex; align-items:center; gap:0.4rem;"><span style="display:inline-block; width:10px; height:10px; border-radius:2px; background:#c084fc;"></span> Flagged</div>
+              <div style="display:flex; align-items:center; gap:0.4rem;"><span style="display:inline-block; width:10px; height:10px; border-radius:2px; background:#334155;"></span> Unanswered</div>
+            </div>
+          </div>
+
+          <!-- Question Body & Options (Spans 3 cols) -->
+          <div style="grid-column: span 3; background:#0b1222; padding:1.5rem; border-radius:var(--radius-sm); border:1px solid var(--border-subtle);">
+            <div style="display:flex; justify-content:space-between; align-items:flex-start; margin-bottom:1rem;">
+              <span id="test-q-category" class="badge badge-accent">CO1 • Boolean Algebra</span>
+              <span id="test-q-status" style="font-size:0.75rem; color:var(--text-muted);">Not Answered Yet</span>
+            </div>
+
+            <h3 id="test-q-text" style="font-size:1.05rem; color:#fff; line-height:1.5; margin-bottom:1.25rem;">
+              Question text loading...
+            </h3>
+
+            <!-- Options Container -->
+            <div id="test-q-options" style="display:flex; flex-direction:column; gap:0.75rem; margin-bottom:1.5rem;"></div>
+
+            <!-- Navigation Buttons -->
+            <div style="display:flex; justify-content:space-between; align-items:center; border-top:1px solid var(--border-subtle); padding-top:1rem;">
+              <button id="test-prev-btn" class="btn btn-secondary" onclick="navigateTestQuestion(-1)">← Previous</button>
+              <button id="test-next-btn" class="btn btn-secondary" onclick="navigateTestQuestion(1)">Next →</button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Examination Results & Official Certificate -->
+      <div id="test-results-view" style="display:none;">
+        <div class="card" style="margin-bottom:1.5rem;">
+          <div class="card-header">
+            <div>
+              <h2 class="card-title">Examination Performance Assessment</h2>
+              <p class="card-subtitle">Comprehensive evaluation summary and Course Learning Outcome (CO) analytics.</p>
+            </div>
+            <div style="display:flex; gap:0.5rem;">
+              <button class="btn btn-primary" onclick="window.print()">🖨️ Print / Save Certificate</button>
+              <button class="btn btn-secondary" onclick="resetExamination()">Retake Examination</button>
+            </div>
+          </div>
+
+          <!-- Score Card Grid -->
+          <div class="grid-4" style="margin-bottom:1.5rem;">
+            <div class="card" style="text-align:center; padding:1.25rem;">
+              <div id="test-res-score" style="font-size:2rem; font-weight:800; color:var(--accent-cyan); font-family:var(--font-mono);">14 / 15</div>
+              <div style="font-size:0.8rem; color:var(--text-secondary); font-weight:700; text-transform:uppercase;">Raw Score</div>
+            </div>
+            <div class="card" style="text-align:center; padding:1.25rem;">
+              <div id="test-res-percentage" style="font-size:2rem; font-weight:800; color:#34d399; font-family:var(--font-mono);">93.3%</div>
+              <div style="font-size:0.8rem; color:var(--text-secondary); font-weight:700; text-transform:uppercase;">Percentage</div>
+            </div>
+            <div class="card" style="text-align:center; padding:1.25rem;">
+              <div id="test-res-tier" style="font-size:1.3rem; font-weight:800; color:#fbbf24;">Distinction</div>
+              <div style="font-size:0.8rem; color:var(--text-secondary); font-weight:700; text-transform:uppercase;">Performance Tier</div>
+            </div>
+            <div class="card" style="text-align:center; padding:1.25rem;">
+              <div id="test-res-time" style="font-size:1.3rem; font-weight:800; color:#c084fc; font-family:var(--font-mono);">08:42</div>
+              <div style="font-size:0.8rem; color:var(--text-secondary); font-weight:700; text-transform:uppercase;">Time Taken</div>
+            </div>
+          </div>
+
+          <!-- Course Outcome (CO) Analytics -->
+          <div style="background:#0b1222; padding:1.25rem; border-radius:var(--radius-sm); border:1px solid var(--border-subtle); margin-bottom:1.5rem;">
+            <h4 style="color:var(--accent-cyan); font-size:0.9rem; margin-bottom:0.75rem; text-transform:uppercase;">Syllabus Course Outcome (CO) Mastery</h4>
+            <div id="test-co-bars" style="display:grid; grid-template-columns:repeat(4, 1fr); gap:1rem;"></div>
+          </div>
+
+          <!-- Printable Certificate of Competency -->
+          <div id="printable-certificate" style="background:#070d19; border:3px double #38bdf8; border-radius:var(--radius-sm); padding:2.5rem; text-align:center; position:relative; margin-bottom:1.5rem;">
+            <div style="border:1px solid rgba(56, 189, 248, 0.3); padding:2rem; border-radius:var(--radius-xs);">
+              <div style="font-size:0.85rem; color:var(--accent-cyan); text-transform:uppercase; letter-spacing:0.15em; font-weight:700;">Department of Electronics & Communication Engineering</div>
+              <div style="font-size:1.6rem; color:#fff; font-weight:800; margin:0.75rem 0 0.25rem 0; letter-spacing:0.02em;">CERTIFICATE OF COMPETENCY</div>
+              <div style="font-size:0.9rem; color:var(--text-secondary);">Course: EC2201 — Digital Systems Design & Logic Synthesis</div>
+              <div style="width:80px; height:2px; background:var(--accent-cyan); margin:1rem auto;"></div>
+              
+              <div style="font-size:0.85rem; color:var(--text-muted); margin-bottom:0.4rem;">This is to certify that</div>
+              <div id="cert-student-name" style="font-size:1.5rem; font-weight:800; color:#fff; font-family:var(--font-mono); text-decoration:underline;">Student Scholar</div>
+              <div style="font-size:0.85rem; color:var(--text-secondary); max-width:600px; margin:0.75rem auto 1.25rem auto; line-height:1.6;">
+                has successfully completed the formal laboratory examination in Combinational Switching Algebra, 4-Variable Karnaugh Map Optimization, and 74xx Series TTL Hardware Logic Synthesis.
+              </div>
+
+              <div style="display:flex; justify-content:space-around; align-items:center; border-top:1px solid var(--border-subtle); padding-top:1rem; margin-top:1rem; font-size:0.8rem; color:var(--text-muted);">
+                <div>
+                  <div style="color:var(--text-secondary); font-weight:700;">Score Achieved:</div>
+                  <div id="cert-score-disp" style="color:#34d399; font-weight:800; font-family:var(--font-mono); font-size:1.1rem;">93.3% (Distinction)</div>
+                </div>
+                <div>
+                  <div style="color:var(--text-secondary); font-weight:700;">Course Code:</div>
+                  <div style="color:#fff; font-weight:700; font-family:var(--font-mono);">EC2201</div>
+                </div>
+                <div>
+                  <div style="color:var(--text-secondary); font-weight:700;">Verification Code:</div>
+                  <div id="cert-hash" style="color:var(--accent-cyan); font-family:var(--font-mono);">EC-2026-X79B</div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Detailed Solution Review Accordion -->
+          <div style="background:#0b1222; padding:1.25rem; border-radius:var(--radius-sm); border:1px solid var(--border-subtle);">
+            <h4 style="color:var(--accent-cyan); font-size:0.9rem; margin-bottom:0.75rem; text-transform:uppercase;">Comprehensive Pedagogical Solution Review</h4>
+            <div id="test-review-list" style="display:flex; flex-direction:column; gap:0.75rem;"></div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- Institutional Academic Footer -->
+  <footer class="app-footer">
+    <div>EC2201 — Digital Systems Design Instructional Platform</div>
+    <div style="margin-top:4px; color:var(--text-dim); font-size:0.75rem;">
+      Combinational Logic Synthesis • Karnaugh Map Subcube Analysis • 100% Equivalence Formally Proven
+    </div>
+  </footer>
+
+  <script src="/static/js/three.min.js"></script>
+  <script src="/static/js/three_scenes.js?v=3d_2"></script>
+  <script src="/static/js/main.js?v=eee_fx2"></script>
+</body>
+</html>
