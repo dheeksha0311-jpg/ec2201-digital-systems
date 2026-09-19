@@ -12,7 +12,3 @@ env/
 Thumbs.db
 .vscode/
 .idea/
-
-# Generated artifacts
-data/truth_table.csv
-static/img/kmap.png
